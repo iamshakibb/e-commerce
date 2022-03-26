@@ -9,8 +9,7 @@ export default function layout({ children }: layoutType) {
   return (
     <>
       <Header />
-      {children}
-      <div>shakib</div>
+      <main>{children}</main>
     </>
   );
 }

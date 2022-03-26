@@ -7,17 +7,42 @@ import { BiShoppingBag, BiHeart } from 'react-icons/bi';
 import { HiOutlineMenuAlt2, HiOutlinePlusSm } from 'react-icons/hi';
 import { FiUser } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from 'src/hooks/useMediaQuery';
 
 export default function Header() {
+  const isMediumDevice = useMediaQuery(`(min-width: 768px)`);
   const [menuOpen, setMenuOpen] = useState(false);
   const navVariants = {
-    hidden: { opacity: 0, top: `-100vh` },
+    hidden: {
+      opacity: 0,
+      top: '-100vh',
+    },
     visible: { opacity: 1, top: 0 },
   };
 
+  console.log(isMediumDevice);
+
   return (
-    <Wrapper>
+    <Wrapper
+      as={motion.div}
+      initial={{ opacity: 0, top: '-100vh' }}
+      animate={{ opacity: 1, top: 0 }}
+    >
       <Grid>
+        <Nav
+          as={motion.div}
+          initial={isMediumDevice ? `visible` : 'hidden'}
+          animate={isMediumDevice ? `visible` : menuOpen ? 'visible' : 'hidden'}
+          variants={navVariants}
+        >
+          <ul>
+            {leftNavOptions.map((option) => (
+              <li key={`nav-list-${option.id}`}>
+                <Link href={option.link}>{option.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </Nav>
         <Menu>
           {menuOpen ? (
             <motion.div
@@ -40,15 +65,19 @@ export default function Header() {
         </Menu>
 
         <Logo>
-          <Image
-            src="/assets/svg/logo/Logo_black.svg"
-            alt="ECOMMERCE"
-            width={'150px'}
-            height={'40px'}
-            quality={100}
-            placeholder="blur"
-            blurDataURL={rgbDataURL(255, 255, 255)}
-          />
+          <Link href={'/'}>
+            <a>
+              <Image
+                src="/assets/svg/logo/Logo_black.svg"
+                alt="ECOMMERCE"
+                width={'150px'}
+                height={'40px'}
+                quality={100}
+                placeholder="blur"
+                blurDataURL={rgbDataURL(255, 255, 255)}
+              />
+            </a>
+          </Link>
         </Logo>
         <MenuAction>
           <BiShoppingBag />
@@ -56,18 +85,6 @@ export default function Header() {
           <FiUser />
         </MenuAction>
       </Grid>
-      <Nav
-        as={motion.div}
-        initial="hidden"
-        animate={menuOpen ? 'visible' : 'hidden'}
-        variants={navVariants}
-      >
-        <ul>
-          {leftNavOptions.map((option) => (
-            <li key={`nav-list-${option.id}`}>{option.name}</li>
-          ))}
-        </ul>
-      </Nav>
     </Wrapper>
   );
 }
@@ -122,12 +139,12 @@ const rightNavOptions = [
 ];
 
 const Wrapper = styled.header`
-  ${() => tw`relative`}
+  ${() => tw`relative md:mt-2`}
 `;
 
 const Grid = styled.div`
   ${() =>
-    tw`container font-Raleway uppercase grid grid-cols-[50px auto 90px] items-center`}
+    tw`container font-Raleway uppercase grid grid-cols-[50px auto 90px]   md:grid-cols-[2fr 1fr 2fr] items-center`}
 
   svg {
     ${() => tw`text-[20px] lol:text-[25px]`}
@@ -135,7 +152,7 @@ const Grid = styled.div`
 `;
 
 const Menu = styled.div`
-  ${() => tw`z-10`}
+  ${() => tw`z-10 md:hidden`}
 
   .times {
     /* ${() => tw`transform rotate-45`} */
@@ -158,21 +175,14 @@ const MenuAction = styled.div`
 `;
 
 const Nav = styled.nav`
-  /* ul {
-    ${() => tw`flex items-center`}
-
-    li {
-      ${() => tw`mr-10`}
-
-      a {
-        ${() => tw`text-[1.1rem] `}
-      }
-    }
-  } */
   ${() =>
-    tw`absolute w-full h-screen bg-white inset-0 flex items-center justify-center`}
+    tw`absolute w-full h-screen bg-white inset-0 flex items-center justify-center md:relative md:w-auto md:h-auto md:justify-start`}
 
-  ul > li {
-    ${() => tw`text-3xl mb-5`}
+  ul {
+    ${() => tw`md:flex `}
+    li {
+      ${() =>
+        tw`text-3xl mb-5 md:text-[13px] md:mb-0 md:ml-4 md:font-bold lg:text-[16px]`}
+    }
   }
 `;
