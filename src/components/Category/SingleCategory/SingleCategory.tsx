@@ -1,0 +1,94 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button } from 'src/styles/Buttons';
+import { Heading } from 'src/styles/Heading';
+import styled from 'styled-components';
+import tw from 'twin.macro';
+
+interface SingleCategoryType {
+  details: string;
+  btn: {
+    name: string;
+    link: string;
+  };
+  image: string;
+  title: string;
+  position: string;
+}
+
+function SingleCategory({
+  details,
+  btn,
+  image,
+  title,
+  position,
+}: SingleCategoryType) {
+  const wrapper = useRef<HTMLDivElement | null>(null);
+  const [contentHeight, setContentHeight] = useState(0);
+
+  useEffect(() => {
+    if (wrapper.current) {
+      setContentHeight(wrapper.current?.offsetHeight);
+    }
+  }, []);
+  return (
+    <Wrapper contentHeight={contentHeight} position={position}>
+      <div>
+        <div className="w-full h-fit p-0" ref={wrapper}>
+          <Heading>{title}</Heading>
+          <p>{details}</p>
+          <Link href={`/${btn.link}`} passHref>
+            <Button twoColor>{btn.name}</Button>
+          </Link>
+        </div>
+      </div>
+      <div>
+        <Image src={image} alt="Featured" layout="fill" />
+        <Overlay />
+      </div>
+    </Wrapper>
+  );
+}
+
+export default SingleCategory;
+
+const Wrapper = styled.section<{ contentHeight: number; position: string }>`
+  ${() => tw`relative h-screen pb-8`} //h-[calc(100vh - 50px)]
+
+   
+  & > div :first-child {
+    ${() =>
+      tw`container flex flex-col h-full justify-end text-center relative z-10  md:text-left md:text-white`}
+
+    ${({ position }) =>
+      position === 'end'
+        ? tw`md:justify-end`
+        : position === 'center'
+        ? tw`md:justify-center`
+        : ``}
+
+    div {
+      ${() => tw`max-w-[500px] w-full`}
+      ${({ position }) => (position === 'end' ? tw`md:mb-20` : ``)}
+    }
+
+    button {
+      ${() => tw`mt-5`}
+    }
+  }
+
+  & > div:last-child {
+    height: ${({ contentHeight }) =>
+      contentHeight ? `calc(100vh - ${contentHeight}px - 5px) ` : `100vh`};
+    ${() => tw`absolute w-full top-0`};
+
+    @media (min-width: 992px) {
+      height: 100vh;
+    }
+  }
+`;
+
+const Overlay = styled.div`
+  ${() => tw`w-full h-full bg-black relative opacity-30`}
+`;

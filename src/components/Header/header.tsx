@@ -67,15 +67,28 @@ export default function Header() {
         <Logo>
           <Link href={'/'}>
             <a>
-              <Image
-                src="/assets/svg/logo/Logo_black.svg"
-                alt="ECOMMERCE"
-                width={'150px'}
-                height={'40px'}
-                quality={100}
-                placeholder="blur"
-                blurDataURL={rgbDataURL(255, 255, 255)}
-              />
+              <div className="mobile">
+                <Image
+                  src="/assets/svg/logo/Logo_black.svg"
+                  alt="ECOMMERCE"
+                  width={'150px'}
+                  height={'40px'}
+                  quality={100}
+                  placeholder="blur"
+                  blurDataURL={rgbDataURL(255, 255, 255)}
+                />
+              </div>
+              <div className="desktop">
+                <Image
+                  src="/assets/svg/logo/Logo_white.svg"
+                  alt="ECOMMERCE"
+                  width={'150px'}
+                  height={'40px'}
+                  quality={100}
+                  placeholder="blur"
+                  blurDataURL={rgbDataURL(255, 255, 255)}
+                />
+              </div>
             </a>
           </Link>
         </Logo>
@@ -139,7 +152,7 @@ const rightNavOptions = [
 ];
 
 const Wrapper = styled.header`
-  ${() => tw`relative md:mt-2`}
+  ${() => tw` md:mt-2 fixed w-full z-40 md:text-white`}
 `;
 
 const Grid = styled.div`
@@ -147,12 +160,12 @@ const Grid = styled.div`
     tw`container font-Raleway uppercase grid grid-cols-[50px auto 90px]   md:grid-cols-[2fr 1fr 2fr] items-center`}
 
   svg {
-    ${() => tw`text-[20px] lol:text-[25px]`}
+    ${() => tw`text-[20px] msm:text-[25px]`}
   }
 `;
 
 const Menu = styled.div`
-  ${() => tw`z-10 md:hidden`}
+  ${() => tw`z-50 md:hidden`}
 
   .times {
     /* ${() => tw`transform rotate-45`} */
@@ -162,6 +175,14 @@ const Menu = styled.div`
 
 const Logo = styled.div`
   ${() => tw`justify-self-center w-28 mt-1.5`}
+
+  .mobile {
+    ${() => tw`w-full h-full md:hidden`}
+  }
+
+  .desktop {
+    ${() => tw`w-full h-full hidden md:block`}
+  }
 `;
 
 const MenuAction = styled.div`
@@ -176,7 +197,7 @@ const MenuAction = styled.div`
 
 const Nav = styled.nav`
   ${() =>
-    tw`absolute w-full h-screen bg-white inset-0 flex items-center justify-center md:relative md:w-auto md:h-auto md:justify-start`}
+    tw`absolute w-full h-screen bg-white inset-0 flex items-center justify-center md:bg-transparent md:relative md:w-auto md:h-auto md:justify-start`}
 
   ul {
     ${() => tw`md:flex `}
