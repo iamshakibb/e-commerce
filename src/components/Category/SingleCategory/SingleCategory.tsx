@@ -44,7 +44,7 @@ function SingleCategory({
         </div>
       </div>
       <div>
-        <Image src={image} alt="Featured" layout="fill" />
+        <Image src={image} alt="Featured" layout="fill" objectFit="cover" />
         <Overlay />
       </div>
     </Wrapper>
@@ -59,18 +59,18 @@ const Wrapper = styled.section<{ contentHeight: number; position: string }>`
    
   & > div :first-child {
     ${() =>
-      tw`container flex flex-col h-full justify-end text-center relative z-10  md:text-left md:text-white`}
+      tw`container flex flex-col h-full justify-end items-center text-center relative z-10  lg:text-left lg:text-white lg:items-start`}
 
     ${({ position }) =>
       position === 'end'
-        ? tw`md:justify-end`
+        ? tw`lg:justify-end`
         : position === 'center'
-        ? tw`md:justify-center`
+        ? tw`lg:justify-center`
         : ``}
 
     div {
       ${() => tw`max-w-[500px] w-full`}
-      ${({ position }) => (position === 'end' ? tw`md:mb-20` : ``)}
+      ${({ position }) => (position === 'end' ? tw`lg:mb-20` : ``)}
     }
 
     button {
@@ -90,5 +90,5 @@ const Wrapper = styled.section<{ contentHeight: number; position: string }>`
 `;
 
 const Overlay = styled.div`
-  ${() => tw`w-full h-full bg-black relative opacity-30`}
+  ${() => tw`w-full h-full bg-black relative opacity-20`}
 `;

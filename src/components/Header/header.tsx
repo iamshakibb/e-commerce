@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
 
 export default function Header() {
-  const isMediumDevice = useMediaQuery(`(min-width: 768px)`);
+  const isMediumDevice = useMediaQuery(`(min-width: 1024px)`);
   const [menuOpen, setMenuOpen] = useState(false);
   const navVariants = {
     hidden: {
@@ -19,9 +19,6 @@ export default function Header() {
     },
     visible: { opacity: 1, top: 0 },
   };
-
-  console.log(isMediumDevice);
-
   return (
     <Wrapper
       as={motion.div}
@@ -152,7 +149,7 @@ const rightNavOptions = [
 ];
 
 const Wrapper = styled.header`
-  ${() => tw` md:mt-2 fixed w-full z-40 md:text-white`}
+  ${() => tw` lg:mt-2 fixed w-full z-40 lg:text-white`}
 `;
 
 const Grid = styled.div`
@@ -165,7 +162,7 @@ const Grid = styled.div`
 `;
 
 const Menu = styled.div`
-  ${() => tw`z-50 md:hidden`}
+  ${() => tw`z-50 lg:hidden`}
 
   .times {
     /* ${() => tw`transform rotate-45`} */
@@ -177,11 +174,11 @@ const Logo = styled.div`
   ${() => tw`justify-self-center w-28 mt-1.5`}
 
   .mobile {
-    ${() => tw`w-full h-full md:hidden`}
+    ${() => tw`w-full h-full lg:hidden`}
   }
 
   .desktop {
-    ${() => tw`w-full h-full hidden md:block`}
+    ${() => tw`w-full h-full hidden lg:block`}
   }
 `;
 
@@ -197,13 +194,12 @@ const MenuAction = styled.div`
 
 const Nav = styled.nav`
   ${() =>
-    tw`absolute w-full h-screen bg-white inset-0 flex items-center justify-center md:bg-transparent md:relative md:w-auto md:h-auto md:justify-start`}
+    tw`absolute w-full h-screen bg-white inset-0 flex items-center justify-center  lg:bg-transparent lg:relative lg:w-auto lg:h-auto lg:justify-start`}
 
   ul {
-    ${() => tw`md:flex `}
+    ${() => tw`lg:flex `}
     li {
-      ${() =>
-        tw`text-3xl mb-5 md:text-[13px] md:mb-0 md:ml-4 md:font-bold lg:text-[16px]`}
+      ${() => tw`text-3xl mb-5 lg:mb-0 lg:ml-4 lg:font-bold lg:text-[16px]`}
     }
   }
 `;

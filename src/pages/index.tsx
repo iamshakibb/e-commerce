@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import SingleCategory from 'src/components/Category';
+import HorizontalGrid from 'src/components/Products';
 
 const Home: NextPage = () => {
   return (
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
         title="VINTAGE INSPIRED"
         position="center"
       />
+      <HorizontalGrid />
     </>
   );
 };
