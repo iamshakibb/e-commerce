@@ -4,81 +4,86 @@ import { Button } from 'src/styles/Buttons';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-function HorizontalGrid() {
+interface HorizontalGridType {
+  id: number;
+  name: string;
+  price: number;
+  link: string;
+  image: string;
+}
+
+interface Props {
+  items: HorizontalGridType[];
+}
+
+const HorizontalGrid: React.FC<Props> = ({ items }) => {
   return (
     <Grid>
-      <div className="grid-item">
-        <div className="image">
-          <Image
-            src="/assets/images/product1.png"
-            layout="fill"
-            alt=""
-            objectFit="cover"
-          />
-          <Overlay />
-        </div>
-        <div className="details group">
-          <h1>Lorem ipsum dolor sit amet.</h1>
-          <p>$200</p>
-          <Button>Shop Now</Button>
-        </div>
-      </div>
-      <div className="grid-item">
-        <div className="image">
-          <Image
-            src="/assets/images/product2.jpg"
-            layout="fill"
-            alt=""
-            objectFit="cover"
-          />
-          <Overlay />
-        </div>
-        <div className="details">
-          <h1>Lorem ipsum dolor sit amet.</h1>
-          <p>$200</p>
-          <Button>Shop Now</Button>
-        </div>
-      </div>
-      <div className="grid-item">
-        <div className="image">
-          <Image
-            src="/assets/images/product3.jpg"
-            layout="fill"
-            alt=""
-            objectFit="cover"
-          />
-          <Overlay />
-        </div>
-        <div className="details">
-          <h1>Lorem ipsum dolor sit amet.</h1>
-          <p>$200</p>
-          <Button>Shop Now</Button>
-        </div>
-      </div>
+      {items.map((i: HorizontalGridType) => (
+        <GridItem key={i.id}>
+          <div className="image">
+            <Image src={i.image} layout="fill" alt="" objectFit="cover" />
+            <Overlay aria-hidden />
+          </div>
+          <Details>
+            <h1>{i.name}</h1>
+            <p>${i.price}</p>
+            <Button>Shop Now</Button>
+          </Details>
+        </GridItem>
+      ))}
     </Grid>
   );
-}
+};
 
 export default HorizontalGrid;
 
 const Grid = styled.section`
   ${() => tw`grid grid-cols-1 lg:grid-cols-3`}
+`;
 
-  & > .grid-item {
-    ${() => tw`relative h-[40em] md:h-[50em] lg:h-[50em]`}
+const GridItem = styled.div`
+  ${() => tw`relative h-[40em] md:h-[50em] lg:h-[50em] transition-all`}
+`;
 
-    & > .details {
-      ${() =>
-        tw`absolute top-0 w-full h-full flex items-center justify-center p-8 text-white flex-col `}
+const Details = styled.div`
+  ${() =>
+    tw`relative top-0 w-full h-full flex items-center justify-center p-8 text-white flex-col 
+    lg:transition-all 
+    // before
+    lg:before:content-[""] lg:before:w-0 lg:before:h-32 lg:before:bg-black lg:before:opacity-80 lg:before:absolute before:top-0 lg:before:left-0 lg:before:duration-300
+    // after
+    lg:after:content-[""] lg:after:w-0 lg:after:h-32 lg:after:bg-black lg:after:opacity-80 lg:after:absolute lg:after:bottom-0 lg:after:right-0 lg:after:duration-300
+    `}
 
-      & > h1 {
-        ${() => tw`text-4xl mb-4 text-center md:hidden group-hover:block`}
-        font-size: clamp(2em, 6vw, 4em);
-      }
+  & > h1 {
+    ${() =>
+      tw`text-2xl mb-4 text-center lg:opacity-0 lg:transition-opacity lg:duration-700`}
+    font-size: clamp(1.8em, 6vw, 2em);
+  }
 
-      & > p {
-        ${() => tw`text-3xl mb-4 text-center `}
-      }
+  & > p {
+    ${() =>
+      tw`text-3xl mb-4 text-center lg:opacity-0 lg:transition-opacity lg:duration-300 delay-75`}
+  }
+
+  & > button {
+    ${() => tw`lg:transition lg:transform lg:duration-500 lg:-translate-y-16`}
+  }
+
+  ${GridItem}:hover & {
+    ${() => tw`lg:before:w-[50%] lg:after:w-[50%]`}
+
+    & > h1 {
+      ${() => tw`lg:opacity-100`}
+    }
+
+    & > p {
+      ${() => tw`lg:opacity-100`}
+    }
+
+    & > button {
+      ${() => tw`lg:translate-y-0`}
     }
   }
 `;

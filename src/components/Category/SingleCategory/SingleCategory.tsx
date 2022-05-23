@@ -45,7 +45,7 @@ function SingleCategory({
       </div>
       <div>
         <Image src={image} alt="Featured" layout="fill" objectFit="cover" />
-        <Overlay />
+        <Overlay aria-hidden />
       </div>
     </Wrapper>
   );
@@ -54,27 +54,21 @@ function SingleCategory({
 export default SingleCategory;
 
 const Wrapper = styled.section<{ contentHeight: number; position: string }>`
-  ${() => tw`relative h-screen pb-8`} //h-[calc(100vh - 50px)]
+  ${() => tw`relative h-screen pb-8`}
 
-   
-  & > div :first-child {
+  & > div:first-child {
     ${() =>
-      tw`container flex flex-col h-full justify-end items-center text-center relative z-10  lg:text-left lg:text-white lg:items-start`}
-
+      tw`container h-full relative z-50 flex flex-col justify-end items-center text-center lg:text-left lg:text-white lg:items-start`}
     ${({ position }) =>
       position === 'end'
         ? tw`lg:justify-end`
         : position === 'center'
         ? tw`lg:justify-center`
-        : ``}
+        : ``};
 
     div {
       ${() => tw`max-w-[500px] w-full`}
       ${({ position }) => (position === 'end' ? tw`lg:mb-20` : ``)}
-    }
-
-    button {
-      ${() => tw`mt-5`}
     }
   }
 
