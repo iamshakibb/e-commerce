@@ -58,7 +58,7 @@ const Wrapper = styled.section<{ contentHeight: number; position: string }>`
 
   & > div:first-child {
     ${() =>
-      tw`container h-full relative z-50 flex flex-col justify-end items-center text-center lg:text-left lg:text-white lg:items-start`}
+      tw`container h-full relative z-10 flex flex-col justify-end items-center text-center lg:text-left lg:text-white lg:items-start`}
     ${({ position }) =>
       position === 'end'
         ? tw`lg:justify-end`

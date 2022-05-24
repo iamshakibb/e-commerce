@@ -22,7 +22,7 @@ const HorizontalGrid: React.FC<Props> = ({ items }) => {
       {items.map((i: HorizontalGridType) => (
         <GridItem key={i.id}>
           <div className="image">
-            <Image src={i.image} layout="fill" alt="" objectFit="cover" />
+            <Image src={i.image} layout="fill" alt={i.name} objectFit="cover" />
             <Overlay aria-hidden />
           </div>
           <Details>
@@ -88,6 +88,7 @@ const Details = styled.div`
   }
 `;
 
-const Overlay = styled.div`
-  ${() => tw`absolute top-0 w-full h-full bg-black opacity-20 `}
+export const Overlay = styled.div`
+  ${() =>
+    tw`absolute top-0 w-full h-full bg-gradient-to-b from-[rgba(0, 0, 0, 0.2)]  to-[rgba(0, 0, 0, 0.1)]`}
 `;
