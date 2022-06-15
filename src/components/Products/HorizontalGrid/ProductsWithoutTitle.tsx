@@ -4,7 +4,7 @@ import { Button } from 'src/styles/Buttons';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-interface HorizontalGridType {
+export interface productsWithoutTitleType {
   id: number;
   name: string;
   price: number;
@@ -13,13 +13,13 @@ interface HorizontalGridType {
 }
 
 interface Props {
-  items: HorizontalGridType[];
+  items: productsWithoutTitleType[];
 }
 
-const HorizontalGrid: React.FC<Props> = ({ items }) => {
+const ProductsWithoutTitle: React.FC<Props> = ({ items }) => {
   return (
     <Grid>
-      {items.map((i: HorizontalGridType) => (
+      {items.map((i: productsWithoutTitleType) => (
         <GridItem key={i.id}>
           <div className="image">
             <Image src={i.image} layout="fill" alt={i.name} objectFit="cover" />
@@ -36,7 +36,7 @@ const HorizontalGrid: React.FC<Props> = ({ items }) => {
   );
 };
 
-export default HorizontalGrid;
+export default ProductsWithoutTitle;
 
 const Grid = styled.section`
   ${() => tw`grid grid-cols-1 lg:grid-cols-3`}

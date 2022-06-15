@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../Header';
+import Footer from 'src/components/Footer';
+import Header from 'src/components/Header';
 
 interface layoutType {
   children: JSX.Element;
@@ -11,6 +12,7 @@ export default function layout({ children }: layoutType) {
     <>
       <Header />
       <Main>{children}</Main>
+      <Footer />
     </>
   );
 }

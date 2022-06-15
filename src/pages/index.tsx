@@ -1,9 +1,7 @@
 import type { NextPage } from 'next';
-import Image from 'next/image';
 import SingleCategory from 'src/components/Category';
-import HorizontalGrid from 'src/components/Products';
-import { Overlay } from 'src/components/Products/HorizontalGrid/HorizontalGrid';
-import { Button } from 'src/styles/Buttons';
+import CategoryGrid from 'src/components/Category/CategoryGrid';
+import { ProductsWithoutTitle, ProductsTitle } from 'src/components/Products';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -24,7 +22,7 @@ const Home: NextPage = () => {
         title="VINTAGE INSPIRED"
         position="center"
       />
-      <HorizontalGrid items={product} />
+      <ProductsWithoutTitle items={product} />
       <SingleCategory
         details="What started as a true '80s vintage pair of jeans, finished as a re-energised, wider leg vintage jean with versatile detailing. "
         btn={{ name: 'SHOP NOW', link: '' }}
@@ -32,37 +30,60 @@ const Home: NextPage = () => {
         title="SUSTAINABLE DENIM"
         position="center"
       />
-
-      <section className="container py-8">
-        <div>
-          <h4 className="text-2xl">NEW ARRIVALS</h4>
-        </div>
-        <Grid>
-          {product2.map((p) => (
-            <div className="grid-item" key={p.id}>
-              <div>
-                <Image
-                  src={p.image}
-                  alt={p.name}
-                  layout="fill"
-                  objectFit="cover"
-                />
-                <Overlay />
-              </div>
-              <div>
-                <h2>{p.name}</h2>
-                <p>${p.price}</p>
-                <Button borderColor="#fff">Buy Now</Button>
-              </div>
-            </div>
-          ))}
-        </Grid>
-      </section>
+      <ProductsTitle items={product2} />
+      <SingleCategory
+        details="Beloved and forever relevant, there’s a convenience
+        factor in a well-built pair of all-in-ones."
+        btn={{ name: 'SHOP COLLECTION', link: '' }}
+        image="/assets/images/home3.png"
+        title="PRAY FOR ROCK"
+        position="right"
+      />
+      <CategoryGrid items={product3} />
     </>
   );
 };
 
 export default Home;
+
+const product3 = [
+  {
+    id: 1,
+    name: 'Lorem ipsum dolor sit amet.',
+    price: 200,
+    link: '',
+    image: '/assets/images/product8.jpg',
+  },
+  {
+    id: 2,
+    name: 'Lorem ipsum dolor sit amet.',
+    price: 200,
+    link: '',
+    image: '/assets/images/product9.jpg',
+  },
+
+  {
+    id: 3,
+    name: 'Lorem ipsum dolor sit amet.',
+    price: 200,
+    link: '',
+    image: '/assets/images/product3.jpg',
+  },
+  {
+    id: 4,
+    name: 'Lorem ipsum dolor sit amet.',
+    price: 200,
+    link: '',
+    image: '/assets/images/product10.jpg',
+  },
+  {
+    id: 5,
+    name: 'Lorem ipsum dolor sit amet.',
+    price: 200,
+    link: '',
+    image: '/assets/images/product11.jpg',
+  },
+];
 
 const product2 = [
   {
@@ -120,46 +141,27 @@ const product = [
 ];
 
 const Grid = styled.div`
-  ${() => tw`grid grid-cols-1 mt-5 gap-5 text-white lg:grid-cols-4 lg:gap-0`}
+  ${() => tw`grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-2 lg:gap-2`}
 
-  .grid-item {
-    ${() => tw`relative h-[30em]`}
-
+  & > .grid-item {
+    ${() => tw`w-full h-full`}
     & > div:first-child {
-      ${() => tw`relative w-full h-full z-0`}
+      ${() => tw`relative h-[65em] md:h-[75em] lg:h-[18em]`}
     }
-    & > div:last-child {
-      ${() =>
-        tw`absolute w-full h-full top-0 z-30 flex flex-col justify-end items-center py-5 px-5 text-center`}
+  }
 
-      & > h2 {
-        ${() =>
-          tw`text-2xl mb-3 lg:opacity-0 lg:transition-opacity lg:duration-300`}
-      }
-
-      & > p {
-        ${() =>
-          tw`text-3xl mb-3 lg:mb-24 lg:opacity-0 lg:transition-opacity lg:duration-300`}
-      }
-
-      & > button {
-        ${() =>
-          tw`lg:absolute lg:top-2/4 lg:-translate-y-2/4 lg:transition-all duration-500`}
-      }
-
-      &:hover {
-        & > h2 {
-          ${() => tw`opacity-100`}
-        }
-
-        & > p {
-          ${() => tw`opacity-100`}
-        }
-
-        & > button {
-          ${() => tw`lg:top-[85%]`}
-        }
-      }
+  & > .grid-item:nth-child(1) {
+    ${() => tw`lg:row-[1/3] lg:col-[1/3]`}
+    & > div:first-child {
+      ${() => tw`lg:h-full`}
     }
+  }
+
+  & > .grid-item:nth-child(2) {
+    ${() => tw`lg:col-[3/4] lg:row-[1/2]`}
+  }
+
+  & > .grid-item:nth-child(3) {
+    ${() => tw`lg:col-[4/-1] lg:row-[1/2]`}
   }
 `;

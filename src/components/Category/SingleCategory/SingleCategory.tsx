@@ -64,7 +64,9 @@ const Wrapper = styled.section<{ contentHeight: number; position: string }>`
         ? tw`lg:justify-end`
         : position === 'center'
         ? tw`lg:justify-center`
-        : ``};
+        : position === 'right'
+        ? tw`lg:justify-start lg:pt-48 lg:items-end`
+        : ''};
 
     div {
       ${() => tw`max-w-[500px] w-full`}

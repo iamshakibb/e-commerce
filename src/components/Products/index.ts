@@ -1,4 +1,8 @@
-import HorizontalGrid from "./HorizontalGrid";
+import { ProductsTitle } from './HorizontalGrid';
+import { ProductsWithoutTitle } from './HorizontalGrid';
 
 
-export default HorizontalGrid
+export {
+  ProductsWithoutTitle,
+  ProductsTitle
+}
