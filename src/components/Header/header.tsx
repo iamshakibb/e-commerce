@@ -8,8 +8,11 @@ import { HiOutlineMenuAlt2, HiOutlinePlusSm } from 'react-icons/hi';
 import { FiUser } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
+import { useRouter } from 'next/router';
 
 export default function Header() {
+  const router = useRouter();
+  const isRootPath = router.pathname === '/';
   const isMediumDevice = useMediaQuery(`(min-width: 1024px)`);
   const [menuOpen, setMenuOpen] = useState(false);
   const navVariants = {
@@ -34,7 +37,10 @@ export default function Header() {
         >
           <ul>
             {leftNavOptions.map((option) => (
-              <li key={`nav-list-${option.id}`}>
+              <li
+                key={`nav-list-${option.id}`}
+                className={isRootPath ? 'text-white' : 'text-black'}
+              >
                 <Link href={option.link}>{option.name}</Link>
               </li>
             ))}
@@ -77,7 +83,11 @@ export default function Header() {
               </div>
               <div className="desktop">
                 <Image
-                  src="/assets/svg/logo/Logo_white.svg"
+                  src={
+                    isRootPath
+                      ? '/assets/svg/logo/Logo_white.svg'
+                      : '/assets/svg/logo/Logo_black.svg'
+                  }
                   alt="ECOMMERCE"
                   width={'150px'}
                   height={'40px'}
@@ -89,7 +99,7 @@ export default function Header() {
             </a>
           </Link>
         </Logo>
-        <MenuAction>
+        <MenuAction isRootPath={isRootPath}>
           <BiShoppingBag />
           <BiHeart />
           <FiUser />
@@ -165,7 +175,6 @@ const Menu = styled.div`
   ${() => tw`z-50 lg:hidden`}
 
   .times {
-    /* ${() => tw`transform rotate-45`} */
     transform: rotate(45deg);
   }
 `;
@@ -182,10 +191,11 @@ const Logo = styled.div`
   }
 `;
 
-const MenuAction = styled.div`
+const MenuAction = styled.div<{ isRootPath: boolean }>`
   ${() => tw`justify-self-end flex`}
 
   svg {
+    ${({ isRootPath }) => (isRootPath ? tw`text-white` : tw`text-black`)}
     &:not(:first-child) {
       ${() => tw`ml-2`}
     }
@@ -200,6 +210,10 @@ const Nav = styled.nav`
     ${() => tw`lg:flex `}
     li {
       ${() => tw`text-3xl mb-5 lg:mb-0 lg:ml-4 lg:font-bold lg:text-[16px]`}
+
+      &:first-child {
+        ${() => tw`lg:ml-0`}
+      }
     }
   }
 `;

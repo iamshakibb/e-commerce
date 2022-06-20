@@ -1,5 +1,5 @@
-import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: any) {
@@ -26,5 +26,17 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+  render(): JSX.Element {
+    return (
+      <Html>
+        <Head />
+        <body>
+          <Main />
+          <div id="modal" />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }

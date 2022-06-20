@@ -44,7 +44,8 @@ const CategoryGrid: React.FC<Props> = ({ items }) => {
 export default CategoryGrid;
 
 const Grid = styled.div`
-  ${() => tw`grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-2 lg:gap-2`}
+  ${() =>
+    tw`grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-2 lg:gap-2 overflow-hidden `}
 
   & > .grid-item {
     ${() => tw`w-full h-full flex items-center justify-center`}
@@ -61,20 +62,23 @@ const Grid = styled.div`
     }
   }
 
-  & > .grid-item:nth-child(2) {
-    ${() => tw`lg:col-[3/4] lg:row-[1/2] `}
-  }
-
   & > .grid-item:nth-child(3) {
     ${() => tw`lg:col-[4/-1] lg:row-[1/2]`}
   }
 `;
 
 const Wrapper = styled.div`
-  ${() => tw`relative cursor-pointer`}
+  ${() => tw`relative cursor-pointer overflow-hidden `}
+
+  &:hover {
+    div: nth-child(1) {
+      ${() => tw`scale-110 transition-all duration-500`}
+    }
+  }
 
   & > div:nth-child(2) {
-    ${() => tw`absolute bottom-0 p-10 text-center lg:hidden text-white`}
+    ${() =>
+      tw`lg:col-[3/4] lg:row-[1/2] absolute bottom-0 p-10 text-center lg:hidden text-white`}
 
     h1 {
       ${() => tw`mb-2 `}
