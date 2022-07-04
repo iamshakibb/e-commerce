@@ -14,6 +14,7 @@ const Home: NextPage = () => {
         details="Our easiest chuck-on-and-go staples come with a serious style heritage that's liberating, sexy, comfy and supremely cool. "
         btn={{ name: 'SHOP NEW ARRIVALS', link: '' }}
         image={url('home1_am5ox9')}
+        blurImage={url('home1_am5ox9', true)}
         title="NEW COLLECTION"
         position="end"
       />
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
         details="Inspired by the '70s and 80's), we know that if you sift through our vintage inspired collection you're gonna rock the perfect silhouette. "
         btn={{ name: 'SHOP NOW', link: '' }}
         image={url('home2_m9hbke')}
+        blurImage={url('home2_m9hbke', true)}
         title="VINTAGE INSPIRED"
         position="center"
       />
@@ -29,6 +31,7 @@ const Home: NextPage = () => {
         details="What started as a true '80s vintage pair of jeans, finished as a re-energised, wider leg vintage jean with versatile detailing. "
         btn={{ name: 'SHOP NOW', link: '' }}
         image={url('home3_zqlgqo')}
+        blurImage={url('home3_zqlgqo', true)}
         title="SUSTAINABLE DENIM"
         position="center"
       />
@@ -38,6 +41,7 @@ const Home: NextPage = () => {
         factor in a well-built pair of all-in-ones."
         btn={{ name: 'SHOP COLLECTION', link: '' }}
         image={url('image-placeholder_kzayya')}
+        blurImage={url('image-placeholder_kzayya', true)}
         title="PRAY FOR ROCK"
         position="right"
       />

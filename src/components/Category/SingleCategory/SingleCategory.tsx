@@ -15,12 +15,14 @@ interface SingleCategoryType {
   image: string;
   title: string;
   position: string;
+  blurImage: string;
 }
 
 function SingleCategory({
   details,
   btn,
   image,
+  blurImage,
   title,
   position,
 }: SingleCategoryType) {
@@ -44,7 +46,14 @@ function SingleCategory({
         </div>
       </div>
       <div>
-        <Image src={image} alt="Featured" layout="fill" objectFit="cover" />
+        <Image
+          src={image}
+          alt="Featured"
+          layout="fill"
+          objectFit="cover"
+          placeholder="blur"
+          blurDataURL={blurImage}
+        />
         <Overlay aria-hidden />
       </div>
     </Wrapper>
