@@ -1,2 +1,2 @@
-export { default as ProductsWithoutTitle } from "./ProductsWithoutTitle"
-export { default as ProductsTitle } from "./ProductsTitle"
+export { default as ProductsWithoutContainer } from "./ProductsWithoutContainer"
+export { default as ProductsWithContainer } from "./ProductsWithContainer"

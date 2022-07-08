@@ -4,7 +4,7 @@ import { Button } from 'src/styles/Buttons';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-export interface productsWithoutTitleType {
+export interface productsWithoutContainerType {
   id: number;
   name: string;
   price: number;
@@ -13,18 +13,25 @@ export interface productsWithoutTitleType {
 }
 
 interface Props {
-  items: productsWithoutTitleType[];
+  items: productsWithoutContainerType[];
 }
 
-const ProductsWithoutTitle: React.FC<Props> = ({ items }) => {
+const ProductsWithoutContainer: React.FC<Props> = ({ items }) => {
   return (
     <Grid>
-      {items.map((i: productsWithoutTitleType) => (
+      {items.map((i: productsWithoutContainerType) => (
         <GridItem key={i.id}>
-          <div className="image">
-            <Image src={i.image} layout="fill" alt={i.name} objectFit="cover" />
+          <ImgContainer>
+            <Image
+              src={i.image}
+              layout="responsive"
+              height={'100%'}
+              width={'100%'}
+              alt={i.name}
+              objectFit="cover"
+            />
             <Overlay aria-hidden />
-          </div>
+          </ImgContainer>
           <Details>
             <h1>{i.name}</h1>
             <p>${i.price}</p>
@@ -36,14 +43,22 @@ const ProductsWithoutTitle: React.FC<Props> = ({ items }) => {
   );
 };
 
-export default ProductsWithoutTitle;
+export default ProductsWithoutContainer;
 
 const Grid = styled.section`
   ${() => tw`grid grid-cols-1 lg:grid-cols-3`}
 `;
 
 const GridItem = styled.div`
-  ${() => tw`relative h-[40em] md:h-[50em] lg:h-[50em] transition-all`}
+  ${() => tw`relative h-[90vh]  lg:h-[95vh] transition-all`}
+`;
+
+const ImgContainer = styled.div`
+  ${() => tw`w-full h-full absolute`}
+
+  span {
+    ${() => tw`!w-full !h-full`}
+  }
 `;
 
 const Details = styled.div`

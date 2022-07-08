@@ -3,26 +3,31 @@ import React from 'react';
 import { Button } from 'src/styles/Buttons';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { Overlay, productsWithoutTitleType } from './ProductsWithoutTitle';
+import {
+  Overlay,
+  productsWithoutContainerType,
+} from './ProductsWithoutContainer';
 
 interface Props {
-  items: productsWithoutTitleType[];
+  items: productsWithoutContainerType[];
 }
 
-const ProductsTitle: React.FC<Props> = ({ items }) => {
+const ProductsWithContainer: React.FC<Props> = ({ items }) => {
   return (
     <section className="container py-8">
       <div>
         <h4 className="text-[1.2em] leading-8">NEW ARRIVALS</h4>
       </div>
       <Grid>
-        {items.map((p: productsWithoutTitleType) => (
+        {items.map((p: productsWithoutContainerType) => (
           <div className="grid-item" key={p.id}>
-            <div>
+            <div className="image">
               <Image
                 src={p.image}
                 alt={p.name}
-                layout="fill"
+                layout="responsive"
+                width={'100%'}
+                height={'100%'}
                 objectFit="cover"
               />
               <Overlay />
@@ -39,7 +44,7 @@ const ProductsTitle: React.FC<Props> = ({ items }) => {
   );
 };
 
-export default ProductsTitle;
+export default ProductsWithContainer;
 
 const Grid = styled.div`
   ${() => tw`grid grid-cols-1 mt-5 gap-5 text-white lg:grid-cols-4 lg:gap-0`}
@@ -48,7 +53,11 @@ const Grid = styled.div`
     ${() => tw`relative h-[30em] md:h-[45em]`}
 
     & > div:first-child {
-      ${() => tw`relative w-full h-full z-0`}
+      ${() => tw`absolute w-full h-full z-0 `}
+
+      span {
+        ${() => tw`!w-full !h-full p-20`}
+      }
     }
     & > div:last-child {
       ${() =>

@@ -2,7 +2,11 @@ import buildUrl from 'cloudinary-build-url';
 import type { NextPage } from 'next';
 import SingleCategory from 'src/components/Category';
 import CategoryGrid from 'src/components/Category/CategoryGrid';
-import { ProductsWithoutTitle, ProductsTitle } from 'src/components/Products';
+import {
+  ProductsWithContainer,
+  ProductsWithoutContainer,
+} from 'src/components/Products';
+
 import { url } from 'src/utils/helper/ImgUrlBuilder';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -26,7 +30,7 @@ const Home: NextPage = () => {
         title="VINTAGE INSPIRED"
         position="center"
       />
-      <ProductsWithoutTitle items={product} />
+      <ProductsWithoutContainer items={product} />
       <SingleCategory
         details="What started as a true '80s vintage pair of jeans, finished as a re-energised, wider leg vintage jean with versatile detailing. "
         btn={{ name: 'SHOP NOW', link: '' }}
@@ -35,7 +39,7 @@ const Home: NextPage = () => {
         title="SUSTAINABLE DENIM"
         position="center"
       />
-      <ProductsTitle items={product2} />
+      <ProductsWithContainer items={product2} />
       <SingleCategory
         details="Beloved and forever relevant, there’s a convenience
         factor in a well-built pair of all-in-ones."

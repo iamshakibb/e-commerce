@@ -3,13 +3,13 @@ import Link from 'next/link';
 import React from 'react';
 import {
   Overlay,
-  productsWithoutTitleType,
-} from 'src/components/Products/HorizontalGrid/ProductsWithoutTitle';
+  productsWithoutContainerType,
+} from 'src/components/Products/HorizontalGrid/ProductsWithoutContainer';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
 interface Props {
-  items: productsWithoutTitleType[];
+  items: productsWithoutContainerType[];
 }
 
 const CategoryGrid: React.FC<Props> = ({ items }) => {
@@ -68,10 +68,10 @@ const Grid = styled.div`
 `;
 
 const Wrapper = styled.div`
-  ${() => tw`relative cursor-pointer overflow-hidden `}
+  ${() => tw`relative cursor-pointer overflow-hidden`}
 
   &:hover {
-    div: nth-child(1) {
+    div:nth-child(1) {
       ${() => tw`scale-110 transition-all duration-500`}
     }
   }

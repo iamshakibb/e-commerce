@@ -1,8 +1,8 @@
-import { ProductsTitle } from './HorizontalGrid';
-import { ProductsWithoutTitle } from './HorizontalGrid';
+import { ProductsWithContainer } from './HorizontalGrid';
+import { ProductsWithoutContainer } from './HorizontalGrid';
 
 
 export {
-  ProductsWithoutTitle,
-  ProductsTitle
+  ProductsWithContainer,
+  ProductsWithoutContainer
 }
