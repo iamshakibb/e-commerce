@@ -24,7 +24,7 @@ export default function Header() {
   };
   return (
     <Wrapper
-      as={motion.div}
+      as={motion.header}
       initial={{ opacity: 0, top: '-100vh' }}
       animate={{ opacity: 1, top: 0 }}
     >

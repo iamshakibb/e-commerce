@@ -14,6 +14,7 @@ import tw from 'twin.macro';
 const Home: NextPage = () => {
   return (
     <>
+      {/* single category product */}
       <SingleCategory
         details="Our easiest chuck-on-and-go staples come with a serious style heritage that's liberating, sexy, comfy and supremely cool. "
         btn={{ name: 'SHOP NEW ARRIVALS', link: '' }}
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
         title="NEW COLLECTION"
         position="end"
       />
+      {/* single category product */}
       <SingleCategory
         details="Inspired by the '70s and 80's), we know that if you sift through our vintage inspired collection you're gonna rock the perfect silhouette. "
         btn={{ name: 'SHOP NOW', link: '' }}
@@ -30,6 +32,7 @@ const Home: NextPage = () => {
         title="VINTAGE INSPIRED"
         position="center"
       />
+      {/* boys section */}
       <ProductsWithoutContainer items={product} />
       <SingleCategory
         details="What started as a true '80s vintage pair of jeans, finished as a re-energised, wider leg vintage jean with versatile detailing. "

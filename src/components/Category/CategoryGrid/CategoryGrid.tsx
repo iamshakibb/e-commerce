@@ -14,7 +14,7 @@ interface Props {
 
 const CategoryGrid: React.FC<Props> = ({ items }) => {
   return (
-    <div className="container">
+    <section className="container">
       <h2 className="py-4 text-xl">SHOP</h2>
       <Grid>
         {items.map((p) => (
@@ -37,7 +37,7 @@ const CategoryGrid: React.FC<Props> = ({ items }) => {
           </Link>
         ))}
       </Grid>
-    </div>
+    </section>
   );
 };
 
