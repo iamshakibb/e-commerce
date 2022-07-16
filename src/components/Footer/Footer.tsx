@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { AiFillFacebook, AiFillLinkedin } from 'react-icons/ai';
+import { randomId } from 'src/constant/product-categorie';
 
 function Footer() {
   return (
@@ -56,13 +57,13 @@ export default Footer;
 
 const social = [
   {
-    id: 1,
+    id: randomId(),
     name: 'FACEBOOK',
     link: '/',
     icon: <AiFillFacebook />,
   },
   {
-    id: 1,
+    id: randomId(),
     name: 'LINKEDIN',
     link: '/',
     icon: <AiFillLinkedin />,
@@ -73,27 +74,27 @@ const info = [
   {
     name: 'GIFT VOUCHERS',
     link: '/gift-vouchers',
-    id: 1,
+    id: randomId(),
   },
   {
     name: 'SIZE GUIDE',
     link: '/size-guide',
-    id: 2,
+    id: randomId(),
   },
   {
     name: 'CAREERS AT E-COMMERCE',
     link: '/careers',
-    id: 3,
+    id: randomId(),
   },
   {
     name: 'ABOUT US',
     link: '/about_us',
-    id: 4,
+    id: randomId(),
   },
   {
     name: 'LEGAL POLICIES',
     link: '/legal-policies',
-    id: 5,
+    id: randomId(),
   },
 ];
 
@@ -101,32 +102,32 @@ const customer_service = [
   {
     name: 'CONTACT',
     link: '/contact',
-    id: 1,
+    id: randomId(),
   },
   {
     name: 'TRACK ORDER',
     link: '/track-order',
-    id: 2,
+    id: randomId(),
   },
   {
     name: 'DELIVERY & RETURNS',
     link: '/delivery-and-returns',
-    id: 3,
+    id: randomId(),
   },
   {
     name: 'PAYMENT',
     link: '/payment',
-    id: 4,
+    id: randomId(),
   },
   {
     name: 'MAKE A RETURN',
     link: '/make-a-return',
-    id: 5,
+    id: randomId(),
   },
   {
     name: 'FAQ',
     link: '/faq',
-    id: 6,
+    id: randomId(),
   },
 ];
 
@@ -139,7 +140,7 @@ const Grid = styled.div`
 
   & > .grid-item {
     & > h2 {
-      ${() => tw`text-sm font-black mb-4`}
+      ${() => tw`mb-4 text-sm font-black`}
     }
 
     & > ul {

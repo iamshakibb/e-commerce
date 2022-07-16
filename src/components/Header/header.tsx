@@ -24,7 +24,7 @@ export default function Header() {
   };
   return (
     <Wrapper
-      as={motion.div}
+      as={motion.header}
       initial={{ opacity: 0, top: '-100vh' }}
       animate={{ opacity: 1, top: 0 }}
     >
@@ -159,7 +159,7 @@ const rightNavOptions = [
 ];
 
 const Wrapper = styled.header`
-  ${() => tw` lg:mt-2 fixed w-full z-40 lg:text-white`}
+  ${() => tw`fixed z-40 w-full lg:mt-2 lg:text-white`}
 `;
 
 const Grid = styled.div`
@@ -187,12 +187,12 @@ const Logo = styled.div`
   }
 
   .desktop {
-    ${() => tw`w-full h-full hidden lg:block`}
+    ${() => tw`hidden w-full h-full lg:block`}
   }
 `;
 
 const MenuAction = styled.div<{ isRootPath: boolean }>`
-  ${() => tw`justify-self-end flex`}
+  ${() => tw`flex justify-self-end`}
 
   svg {
     ${({ isRootPath }) => (isRootPath ? tw`text-white` : tw`text-black`)}
@@ -204,7 +204,7 @@ const MenuAction = styled.div<{ isRootPath: boolean }>`
 
 const Nav = styled.nav`
   ${() =>
-    tw`absolute w-full h-screen bg-white inset-0 flex items-center justify-center  lg:bg-transparent lg:relative lg:w-auto lg:h-auto lg:justify-start`}
+    tw`absolute inset-0 flex items-center justify-center w-full h-screen bg-white lg:bg-transparent lg:relative lg:w-auto lg:h-auto lg:justify-start`}
 
   ul {
     ${() => tw`lg:flex `}
