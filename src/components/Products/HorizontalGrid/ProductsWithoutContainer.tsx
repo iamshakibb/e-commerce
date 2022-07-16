@@ -54,7 +54,7 @@ const GridItem = styled.div`
 `;
 
 const ImgContainer = styled.div`
-  ${() => tw`w-full h-full absolute`}
+  ${() => tw`absolute w-full h-full`}
 
   span {
     ${() => tw`!w-full !h-full`}
@@ -73,13 +73,13 @@ const Details = styled.div`
 
   & > h1 {
     ${() =>
-      tw`text-2xl mb-4 text-center lg:opacity-0 lg:transition-opacity lg:duration-700`}
+      tw`mb-4 text-2xl text-center lg:opacity-0 lg:transition-opacity lg:duration-700`}
     font-size: clamp(1.8em, 6vw, 2em);
   }
 
   & > p {
     ${() =>
-      tw`text-3xl mb-4 text-center lg:opacity-0 lg:transition-opacity lg:duration-300 delay-75`}
+      tw`mb-4 text-3xl text-center delay-75 lg:opacity-0 lg:transition-opacity lg:duration-300`}
   }
 
   & > button {

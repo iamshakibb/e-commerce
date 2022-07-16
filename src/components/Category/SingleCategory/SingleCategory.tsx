@@ -37,7 +37,7 @@ function SingleCategory({
   return (
     <Wrapper contentHeight={contentHeight} position={position}>
       <div>
-        <div className="w-full h-fit p-0" ref={wrapper}>
+        <div className="w-full p-0 h-fit" ref={wrapper}>
           <Heading>{title}</Heading>
           <p>{details}</p>
           <Link href={`/${btn.link}`} passHref>
@@ -67,7 +67,7 @@ const Wrapper = styled.section<{ contentHeight: number; position: string }>`
 
   & > div:first-child {
     ${() =>
-      tw`container h-full relative z-10 flex flex-col justify-end items-center text-center lg:text-left lg:text-white lg:items-start`}
+      tw`container relative z-10 flex flex-col items-center justify-end h-full text-center lg:text-left lg:text-white lg:items-start`}
     ${({ position }) =>
       position === 'end'
         ? tw`lg:justify-end`
@@ -86,7 +86,7 @@ const Wrapper = styled.section<{ contentHeight: number; position: string }>`
   & > div:last-child {
     height: ${({ contentHeight }) =>
       contentHeight ? `calc(100vh - ${contentHeight}px - 5px) ` : `100vh`};
-    ${() => tw`absolute w-full top-0`};
+    ${() => tw`absolute top-0 w-full`};
 
     @media (min-width: 992px) {
       height: 100vh;
@@ -95,5 +95,5 @@ const Wrapper = styled.section<{ contentHeight: number; position: string }>`
 `;
 
 const Overlay = styled.div`
-  ${() => tw`w-full h-full bg-black relative opacity-20`}
+  ${() => tw`relative w-full h-full bg-black opacity-20`}
 `;

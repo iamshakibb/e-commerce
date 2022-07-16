@@ -140,7 +140,7 @@ const Grid = styled.div`
 
   & > .grid-item {
     & > h2 {
-      ${() => tw`text-sm font-black mb-4`}
+      ${() => tw`mb-4 text-sm font-black`}
     }
 
     & > ul {

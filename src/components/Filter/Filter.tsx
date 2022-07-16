@@ -66,7 +66,7 @@ const SubMenu = styled.div`
   ${() => tw`ml-2 cursor-pointer`}
 
   li {
-    ${() => tw`ml-2 mb-3 `}
+    ${() => tw`mb-3 ml-2 `}
   }
   span:first-child {
     ${() => tw`mr-3`}

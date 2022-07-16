@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 import { BsPlus } from 'react-icons/bs';
 import { FiMinus } from 'react-icons/fi';
 import SideBar from 'src/components/SideBar';
-import { Modal } from 'zero-react-modal';
+// import { Modal } from 'zero-react-modal';
 
 const Collections = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +21,9 @@ const Collections = () => {
         <SideBar />
       </div>
       <button onClick={() => setIsOpen((prev) => !prev)}>CLick me</button>
-      <Modal isOpen={isOpen} hide={setIsOpen}>
+      {/* <Modal isOpen={isOpen} hide={setIsOpen}>
         <h1>hiaksjdkfjasd</h1>
-      </Modal>
+      </Modal> */}
       <div className="content">content</div>
     </Layout>
   );
