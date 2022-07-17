@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { BiShoppingBag, BiHeart } from 'react-icons/bi';
@@ -22,6 +22,12 @@ export default function Header() {
     },
     visible: { opacity: 1, top: 0 },
   };
+
+  useEffect(() => {
+    if (!isMediumDevice) {
+      setMenuOpen(false);
+    }
+  }, [isMediumDevice, router]);
   return (
     <Wrapper
       as={motion.header}
