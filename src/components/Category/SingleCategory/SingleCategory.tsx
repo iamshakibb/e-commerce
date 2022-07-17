@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
+import { useWindowSize } from 'src/hooks/useWindowSize';
 import { Button } from 'src/styles/Buttons';
 import { Heading } from 'src/styles/Heading';
 import styled from 'styled-components';
@@ -28,12 +29,12 @@ function SingleCategory({
 }: SingleCategoryType) {
   const wrapper = useRef<HTMLDivElement | null>(null);
   const [contentHeight, setContentHeight] = useState(0);
-
+  const isWindowsSizeChange = useWindowSize();
   useEffect(() => {
     if (wrapper.current) {
       setContentHeight(wrapper.current?.offsetHeight);
     }
-  }, []);
+  }, [isWindowsSizeChange]);
   return (
     <Wrapper contentHeight={contentHeight} position={position}>
       <div>
@@ -85,8 +86,14 @@ const Wrapper = styled.section<{ contentHeight: number; position: string }>`
 
   & > div:last-child {
     height: ${({ contentHeight }) =>
-      contentHeight ? `calc(100vh - ${contentHeight}px - 5px) ` : `100vh`};
+      contentHeight ? `calc(100vh - ${contentHeight}px - 10px) ` : `100vh`};
     ${() => tw`absolute top-0 w-full`};
+
+    @media (min-width: 728px) {
+      height: ${({ contentHeight }) =>
+        contentHeight ? `calc(100vh - ${contentHeight}px - 0px) ` : `100vh`};
+      ${() => tw`absolute top-0 w-full`};
+    }
 
     @media (min-width: 992px) {
       height: 100vh;

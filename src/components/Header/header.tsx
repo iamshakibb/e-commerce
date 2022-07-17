@@ -39,9 +39,13 @@ export default function Header() {
             {leftNavOptions.map((option) => (
               <li
                 key={`nav-list-${option.id}`}
-                className={isRootPath ? 'text-white' : 'text-black'}
+                className={
+                  isRootPath && isMediumDevice ? 'text-white' : 'text-black'
+                }
               >
-                <Link href={option.link}>{option.name}</Link>
+                <Link href={option.link}>
+                  <a>{option.name}</a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -167,7 +171,7 @@ const Grid = styled.div`
     tw`container font-Raleway uppercase grid grid-cols-[50px auto 90px]   md:grid-cols-[2fr 1fr 2fr] items-center`}
 
   svg {
-    ${() => tw`text-[20px] msm:text-[25px]`}
+    ${() => tw`text-lg msm:text-lg`}
   }
 `;
 
@@ -209,7 +213,7 @@ const Nav = styled.nav`
   ul {
     ${() => tw`lg:flex `}
     li {
-      ${() => tw`text-3xl mb-5 lg:mb-0 lg:ml-4 lg:font-bold lg:text-[16px]`}
+      ${() => tw`mb-5 text-2xl lg:mb-0 lg:ml-4 lg:font-bold lg:text-s`}
 
       &:first-child {
         ${() => tw`lg:ml-0`}

@@ -1,8 +1,10 @@
+import { MotionConfig } from 'framer-motion';
 import React, { useState } from 'react';
 import { BsPlus } from 'react-icons/bs';
 import { FiMinus } from 'react-icons/fi';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import ResizeableHeight from '../ResizeableHeight';
 
 interface SubMenuType {
   name: string;
@@ -22,29 +24,33 @@ type props = {
 const Filter: React.FC<props> = ({ filter }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <Wrapper>
-      <FilterBtn onClick={() => setIsOpen((prev) => !prev)}>
-        <span>
-          {isOpen ? <FiMinus color="#000" /> : <BsPlus color="#000" />}
-        </span>
-        <span>{filter.name}</span>
-      </FilterBtn>
+    <MotionConfig transition={{ duration: 0.1 }}>
+      <Wrapper>
+        <FilterBtn onClick={() => setIsOpen((prev) => !prev)}>
+          <span>
+            {isOpen ? <FiMinus color="#000" /> : <BsPlus color="#000" />}
+          </span>
+          <span>{filter.name}</span>
+        </FilterBtn>
 
-      {isOpen && filter.subMenus && (
-        <SubMenu>
-          {filter.subMenus?.map((menu) => (
-            <li key={menu.id}>
-              <span>
-                <input type="checkbox" id={menu.name} />
-              </span>
-              <span>
-                <label htmlFor={menu.name}>{menu.name}</label>
-              </span>
-            </li>
-          ))}
-        </SubMenu>
-      )}
-    </Wrapper>
+        <ResizeableHeight isOpen={isOpen}>
+          {isOpen && filter.subMenus && (
+            <SubMenu>
+              {filter.subMenus?.map((menu) => (
+                <li key={menu.id}>
+                  <span>
+                    <input type="checkbox" id={menu.name} />
+                  </span>
+                  <span>
+                    <label htmlFor={menu.name}>{menu.name}</label>
+                  </span>
+                </li>
+              ))}
+            </SubMenu>
+          )}
+        </ResizeableHeight>
+      </Wrapper>
+    </MotionConfig>
   );
 };
 

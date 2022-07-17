@@ -73,13 +73,13 @@ const Details = styled.div`
 
   & > h1 {
     ${() =>
-      tw`mb-4 text-2xl text-center lg:opacity-0 lg:transition-opacity lg:duration-700`}
+      tw`mb-4 text-base text-center lg:opacity-0 lg:transition-opacity lg:duration-700`}
     font-size: clamp(1.8em, 6vw, 2em);
   }
 
   & > p {
     ${() =>
-      tw`mb-4 text-3xl text-center delay-75 lg:opacity-0 lg:transition-opacity lg:duration-300`}
+      tw`mb-4 text-xl text-center delay-75 lg:opacity-0 lg:transition-opacity lg:duration-300`}
   }
 
   & > button {

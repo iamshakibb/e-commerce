@@ -148,7 +148,7 @@ const Grid = styled.div`
         ${() => tw`mb-2 font-semibold`}
 
         & > a {
-          ${() => tw`flex items-center gap-4 text-sm`}
+          ${() => tw`flex items-center gap-4 text-s`}
         }
       }
     }

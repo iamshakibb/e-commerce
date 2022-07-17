@@ -50,7 +50,7 @@ const Grid = styled.div`
   ${() => tw`grid grid-cols-1 gap-5 mt-5 text-white lg:grid-cols-4 lg:gap-0`}
 
   .grid-item {
-    ${() => tw`relative h-[30em] md:h-[45em]`}
+    ${() => tw`relative h-[30em] `}
 
     & > div:first-child {
       ${() => tw`absolute z-0 w-full h-full `}
@@ -65,12 +65,12 @@ const Grid = styled.div`
 
       & > h2 {
         ${() =>
-          tw`mb-3 text-2xl lg:opacity-0 lg:transition-opacity lg:duration-300`}
+          tw`mb-3 text-sm lg:opacity-0 lg:transition-opacity lg:duration-300`}
       }
 
       & > p {
         ${() =>
-          tw`mb-3 text-3xl lg:mb-24 lg:opacity-0 lg:transition-opacity lg:duration-300`}
+          tw`mb-3 text-base lg:mb-24 lg:opacity-0 lg:transition-opacity lg:duration-300`}
       }
 
       & > button {

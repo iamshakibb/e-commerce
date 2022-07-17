@@ -15,7 +15,7 @@ interface Props {
 const CategoryGrid: React.FC<Props> = ({ items }) => {
   return (
     <section className="container">
-      <h2 className="py-4 text-xl">SHOP</h2>
+      <h2 className="py-4 text-base font-bold">SHOP</h2>
       <Grid>
         {items.map((p) => (
           <Link href={p.link} passHref key={p.id}>
