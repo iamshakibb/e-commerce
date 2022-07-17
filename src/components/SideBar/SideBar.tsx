@@ -11,14 +11,11 @@ import { MotionConfig } from 'framer-motion';
 import ResizeableHeight from '../ResizeableHeight';
 
 const SideBar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const isMediumDevice = useMediaQuery(`(min-width: 1024px)`);
+  console.log(isMediumDevice);
 
-  useEffect(() => {
-    setIsOpen(isMediumDevice);
-  }, [isMediumDevice]);
-
-  console.log(isOpen);
+  // console.log(isOpen);
   return (
     <MotionConfig transition={{ duration: 0.4 }}>
       <Wrapper>
@@ -28,36 +25,70 @@ const SideBar = () => {
             <span>REFINE ITEMS</span>
           </button>
         </ToggleBtn>
-        <ResizeableHeight isOpen={isOpen}>
-          {isOpen && (
-            <div>
-              <Categorie>
-                <h1>CATEGORIES</h1>
-                <ul>
-                  {categorie.map((c) => (
-                    <li key={c.id}>
-                      <button>{c.name}</button>
-                    </li>
-                  ))}
-                </ul>
-              </Categorie>
-              <FilterWrapper>
-                <h2>Filter</h2>
-                <ul>
-                  {filters.map((filter) => (
-                    <Filter key={filter.id} filter={filter} />
-                  ))}
-                </ul>
-              </FilterWrapper>
-            </div>
-          )}
-        </ResizeableHeight>
+        <SideNav />
+        <MobileSideNav isOpen={isOpen} />
       </Wrapper>
     </MotionConfig>
   );
 };
 
 export default SideBar;
+
+const SideNav = () => {
+  return (
+    <div className="hidden lg:block">
+      <Categorie>
+        <h1>CATEGORIES</h1>
+        <ul>
+          {categorie.map((c) => (
+            <li key={c.id}>
+              <button>{c.name}</button>
+            </li>
+          ))}
+        </ul>
+      </Categorie>
+      <FilterWrapper>
+        <h2>Filter</h2>
+        <ul>
+          {filters.map((filter) => (
+            <Filter key={filter.id} filter={filter} />
+          ))}
+        </ul>
+      </FilterWrapper>
+    </div>
+  );
+};
+
+const MobileSideNav = ({ isOpen }: { isOpen: boolean }) => {
+  return (
+    <div className="lg:hidden">
+      <ResizeableHeight isOpen={isOpen}>
+        {isOpen && (
+          <div>
+            <Categorie>
+              <h1>CATEGORIES</h1>
+              <ul>
+                {categorie.map((c) => (
+                  <li key={c.id}>
+                    <button>{c.name}</button>
+                  </li>
+                ))}
+              </ul>
+            </Categorie>
+            <FilterWrapper>
+              <h2>Filter</h2>
+              <ul>
+                {filters.map((filter) => (
+                  <Filter key={filter.id} filter={filter} />
+                ))}
+              </ul>
+            </FilterWrapper>
+          </div>
+        )}
+      </ResizeableHeight>
+    </div>
+  );
+};
 
 const Wrapper = styled.div`
   ${() => tw`mb-5 border-b-2 border-dashed border-b-gray-500 lg:border-none`}

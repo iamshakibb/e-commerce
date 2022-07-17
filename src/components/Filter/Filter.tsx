@@ -68,7 +68,7 @@ const FilterBtn = styled.button`
   }
 `;
 
-const SubMenu = styled.div`
+const SubMenu = styled.ul`
   ${() => tw`ml-2 cursor-pointer`}
 
   li {
