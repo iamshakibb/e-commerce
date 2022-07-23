@@ -169,7 +169,7 @@ const rightNavOptions = [
 ];
 
 const Wrapper = styled.header`
-  ${() => tw`fixed z-40 w-full lg:mt-2 lg:text-white`}
+  ${() => tw`fixed z-40 w-full lg:pt-2 lg:text-white`}
 `;
 
 const Grid = styled.div`

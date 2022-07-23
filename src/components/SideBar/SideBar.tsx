@@ -34,6 +34,7 @@ const SideBar = () => {
 
 export default SideBar;
 
+//! temp soulation
 const SideNav = () => {
   return (
     <div className="hidden lg:block">
@@ -91,7 +92,7 @@ const MobileSideNav = ({ isOpen }: { isOpen: boolean }) => {
 };
 
 const Wrapper = styled.div`
-  ${() => tw`mb-5 border-b-2 border-dashed border-b-gray-500 lg:border-none`}
+  ${() => tw`mb-10 border-b-2 border-dashed border-b-gray-500 lg:border-none`}
 `;
 
 const Categorie = styled.div`
