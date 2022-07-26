@@ -13,7 +13,6 @@ import ResizeableHeight from '../ResizeableHeight';
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const isMediumDevice = useMediaQuery(`(min-width: 1024px)`);
-  console.log(isMediumDevice);
 
   // console.log(isOpen);
   return (
