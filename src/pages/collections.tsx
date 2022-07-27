@@ -1,69 +1,25 @@
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 import SideBar from 'src/components/SideBar';
 import { randomId } from 'src/constant/product-categorie';
-import Image from 'next/image';
-import { url } from 'src/utils/helper/ImgUrlBuilder';
-// import { Modal } from 'zero-react-modal';
+import Collections from 'src/components/Collections';
+import styled from 'styled-components';
+import tw from 'twin.macro';
 
-const Collections = () => {
+const CollectionsPage = () => {
   // const Heading = () => <h2>Hello asdfasdf</h2>;
   return (
     <Layout>
-      <div>
-        <SideBar />
-      </div>
-      <Grid>
-        {products.map((product) => (
-          <Item key={product.id}>
-            <div className="relative h-[500px] sm:h-[600px] msm:h-[650px] lg:h-[600px]">
-              <Image
-                src={url(product.img)}
-                alt={product.img}
-                layout="responsive"
-                width={'100%'}
-                height={'100%'}
-                objectFit="cover"
-              />
-            </div>
-            <div>
-              <Heading>{product.title}</Heading>
-              <p className="text-sm">
-                USD <span className="font-semibold">${product.price}</span>
-              </p>
-              {product.isSoldOut && (
-                <p className="font-bold text-gray-500 uppercase">Sold out</p>
-              )}
-            </div>
-          </Item>
-        ))}
-      </Grid>
+      <>
+        <div>
+          <SideBar />
+        </div>
+        <Collections products={products} />
+      </>
     </Layout>
   );
 };
 
-export default Collections;
-
-const Grid = styled.div`
-  ${() => tw`grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-2`}
-`;
-
-const Item = styled.div`
-  ${() => tw`relative w-full`}
-
-  span {
-    ${() => tw`!h-full !w-full`}
-  }
-`;
-
-const Layout = styled.section`
-  ${() => tw`grid container grid-cols-1 mt-[100px] lg:grid-cols-[200px 1fr] `}
-`;
-
-const Heading = styled.h1`
-  ${() => tw`mt-2 text-sm`}
-`;
+export default CollectionsPage;
 
 const products = [
   {
@@ -109,3 +65,7 @@ const products = [
     isSoldOut: true,
   },
 ];
+
+const Layout = styled.section`
+  ${() => tw`grid container grid-cols-1 mt-[100px] lg:grid-cols-[200px 1fr] `}
+`;

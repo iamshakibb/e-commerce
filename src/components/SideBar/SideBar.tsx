@@ -97,7 +97,7 @@ const Wrapper = styled.div`
 const Categorie = styled.div`
   ${() => tw`mb-5`}
   h1 {
-    ${() => tw`mb-3 text-base`}
+    ${() => tw`mb-3 text-sm font-semibold`}
   }
 
   ul {
