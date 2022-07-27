@@ -140,12 +140,12 @@ const Grid = styled.div`
 
   & > .grid-item {
     & > h2 {
-      ${() => tw`mb-4 text-sm font-black`}
+      ${() => tw`mb-4 text-sm font-semibold`}
     }
 
     & > ul {
       & > li {
-        ${() => tw`mb-2 font-semibold`}
+        ${() => tw`mb-2`}
 
         & > a {
           ${() => tw`flex items-center gap-4 text-s`}

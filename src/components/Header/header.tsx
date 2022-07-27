@@ -177,7 +177,7 @@ const Grid = styled.div`
     tw`container font-Raleway uppercase grid grid-cols-[50px auto 90px]   md:grid-cols-[2fr 1fr 2fr] items-center`}
 
   svg {
-    ${() => tw`text-lg msm:text-lg`}
+    ${() => tw`text-base msm:text-base`}
   }
 `;
 
@@ -202,7 +202,7 @@ const Logo = styled.div`
 `;
 
 const MenuAction = styled.div<{ isRootPath: boolean }>`
-  ${() => tw`flex justify-self-end`}
+  ${() => tw`z-50 flex justify-self-end`}
 
   svg {
     ${({ isRootPath }) => (isRootPath ? tw`text-white` : tw`text-black`)}
@@ -219,7 +219,7 @@ const Nav = styled.nav`
   ul {
     ${() => tw`lg:flex `}
     li {
-      ${() => tw`mb-5 text-2xl lg:mb-0 lg:ml-4 lg:font-bold lg:text-s`}
+      ${() => tw`mb-5 text-lg lg:mb-0 lg:ml-4 lg:font-semibold lg:text-s`}
 
       &:first-child {
         ${() => tw`lg:ml-0`}

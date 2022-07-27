@@ -33,7 +33,9 @@ export default class MyDocument extends Document {
         <Head />
         <body
           className={
-            process.env.NODE_ENV === 'development' ? 'debug-screens' : ''
+            process.env.NODE_ENV === 'development'
+              ? 'debug-screens font-Raleway'
+              : 'font-Raleway'
           }
         >
           <Main />
