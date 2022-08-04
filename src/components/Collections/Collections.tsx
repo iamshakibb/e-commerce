@@ -3,8 +3,6 @@ import Link from 'next/link';
 import React from 'react';
 import { BiHeart } from 'react-icons/bi';
 import { url } from 'src/utils/helper/ImgUrlBuilder';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 
 interface product {
   id: string;
@@ -20,10 +18,10 @@ type props = {
 
 const Collections: React.FC<props> = ({ products }) => {
   return (
-    <Grid>
+    <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-2">
       {products.map((product) => (
-        <Item key={product.id}>
-          <div className="relative h-[500px] sm:h-[600px] msm:h-[650px] lg:h-[600px]">
+        <div key={product.id} className="relative w-full">
+          <div className="relative image-container h-[500px] sm:h-[600px] msm:h-[650px] lg:h-[600px]">
             <Image
               src={url(product.img)}
               alt={product.img}
@@ -38,7 +36,7 @@ const Collections: React.FC<props> = ({ products }) => {
           </div>
           <Link href={`collections/${product.title}`} passHref>
             <a className="space-y-1">
-              <Heading>{product.title}</Heading>
+              <h1 className="mt-2 text-sm font-semibold">{product.title}</h1>
               <p className="text-sm">
                 USD $<span>{product.price}</span>
               </p>
@@ -49,26 +47,10 @@ const Collections: React.FC<props> = ({ products }) => {
               )}
             </a>
           </Link>
-        </Item>
+        </div>
       ))}
-    </Grid>
+    </div>
   );
 };
 
 export default Collections;
-
-const Grid = styled.div`
-  ${() => tw`grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-2`}
-`;
-
-const Item = styled.div`
-  ${() => tw`relative w-full`}
-
-  span {
-    ${() => tw`!h-full !w-full`}
-  }
-`;
-
-const Heading = styled.h1`
-  ${() => tw`mt-2 text-sm font-semibold`}
-`;

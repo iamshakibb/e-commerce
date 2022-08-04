@@ -15,7 +15,7 @@ const ProductsWithContainer: React.FC<Props> = ({ items }) => {
       <div className="grid grid-cols-1 gap-5 mt-5 text-white lg:grid-cols-2">
         {items.map((p: productsWithoutContainerType) => (
           <div
-            className="grid-item relative h-[30em] md:h-[45em] lg:h-[45em] group"
+            className="grid-item relative h-[30em] md:h-[140vh] lg:h-[95vh] group"
             key={p.id}
           >
             <div className="image-container">

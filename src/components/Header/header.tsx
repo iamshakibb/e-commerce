@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 import { BiShoppingBag, BiHeart } from 'react-icons/bi';
 import { HiOutlineMenuAlt2, HiOutlinePlusSm } from 'react-icons/hi';
 import { FiUser } from 'react-icons/fi';
@@ -29,25 +27,25 @@ export default function Header() {
     }
   }, [isMediumDevice, router]);
   return (
-    <Wrapper
-      as={motion.header}
+    <motion.header
+      className="fixed z-40 w-full lg:pt-2 lg:text-white"
       initial={{ opacity: 0, top: '-100vh' }}
       animate={{ opacity: 1, top: 0 }}
     >
-      <Grid>
-        <Nav
-          as={motion.div}
+      <div className="container font-Raleway uppercase grid grid-cols-[50px_auto_90px] md:grid-cols-[2fr_1fr_2fr] items-center">
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center w-full h-screen bg-white lg:bg-transparent lg:relative lg:w-auto lg:h-auto lg:justify-start"
           initial={isMediumDevice ? `visible` : 'hidden'}
           animate={isMediumDevice ? `visible` : menuOpen ? 'visible' : 'hidden'}
           variants={navVariants}
         >
-          <ul>
-            {leftNavOptions.map((option) => (
+          <ul className="lg:flex">
+            {leftNavOptions.map((option, idx) => (
               <li
                 key={`nav-list-${option.id}`}
-                className={
+                className={`mb-5 text-lg lg:mb-0 lg:font-semibold lg:text-s ${
                   isRootPath && isMediumDevice ? 'text-white' : 'text-black'
-                }
+                } ${idx === 0 ? `lg:ml-0` : 'lg:ml-4'}`}
               >
                 <Link href={option.link}>
                   <a>{option.name}</a>
@@ -55,15 +53,16 @@ export default function Header() {
               </li>
             ))}
           </ul>
-        </Nav>
-        <Menu>
+        </motion.div>
+        <div className="z-50 lg:hidden">
           {menuOpen ? (
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
+              className="text-base msm:text-base"
             >
               <HiOutlinePlusSm
-                className="times"
+                className="rotate-[rotate(45deg)]"
                 onClick={() => setMenuOpen(!menuOpen)}
               />
             </motion.div>
@@ -71,16 +70,17 @@ export default function Header() {
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
+              className="text-base msm:text-base"
             >
               <HiOutlineMenuAlt2 onClick={() => setMenuOpen(!menuOpen)} />
             </motion.div>
           )}
-        </Menu>
+        </div>
 
-        <Logo>
+        <div className="justify-self-center w-28 mt-1.5">
           <Link href={'/'}>
             <a>
-              <div className="mobile">
+              <div className="w-full h-full lg:hidden">
                 <Image
                   src="/assets/svg/logo/Logo_black.svg"
                   alt="ECOMMERCE"
@@ -91,7 +91,7 @@ export default function Header() {
                   blurDataURL={rgbDataURL(255, 255, 255)}
                 />
               </div>
-              <div className="desktop">
+              <div className="hidden w-full h-full lg:block">
                 <Image
                   src={
                     isRootPath
@@ -108,14 +108,18 @@ export default function Header() {
               </div>
             </a>
           </Link>
-        </Logo>
-        <MenuAction isRootPath={isRootPath}>
+        </div>
+        <div
+          className={`z-50 flex justify-self-end text-base msm:text-base  space-x-2 ${
+            isRootPath ? `text-white` : `text-black`
+          }`}
+        >
           <BiShoppingBag />
           <BiHeart />
           <FiUser />
-        </MenuAction>
-      </Grid>
-    </Wrapper>
+        </div>
+      </div>
+    </motion.header>
   );
 }
 
@@ -167,63 +171,3 @@ const rightNavOptions = [
     // iconName: faShoppingBag,
   },
 ];
-
-const Wrapper = styled.header`
-  ${() => tw`fixed z-40 w-full lg:pt-2 lg:text-white`}
-`;
-
-const Grid = styled.div`
-  ${() =>
-    tw`container font-Raleway uppercase grid grid-cols-[50px auto 90px]   md:grid-cols-[2fr 1fr 2fr] items-center`}
-
-  svg {
-    ${() => tw`text-base msm:text-base`}
-  }
-`;
-
-const Menu = styled.div`
-  ${() => tw`z-50 lg:hidden`}
-
-  .times {
-    transform: rotate(45deg);
-  }
-`;
-
-const Logo = styled.div`
-  ${() => tw`justify-self-center w-28 mt-1.5`}
-
-  .mobile {
-    ${() => tw`w-full h-full lg:hidden`}
-  }
-
-  .desktop {
-    ${() => tw`hidden w-full h-full lg:block`}
-  }
-`;
-
-const MenuAction = styled.div<{ isRootPath: boolean }>`
-  ${() => tw`z-50 flex justify-self-end`}
-
-  svg {
-    ${({ isRootPath }) => (isRootPath ? tw`text-white` : tw`text-black`)}
-    &:not(:first-child) {
-      ${() => tw`ml-2`}
-    }
-  }
-`;
-
-const Nav = styled.nav`
-  ${() =>
-    tw`absolute inset-0 flex items-center justify-center w-full h-screen bg-white lg:bg-transparent lg:relative lg:w-auto lg:h-auto lg:justify-start`}
-
-  ul {
-    ${() => tw`lg:flex `}
-    li {
-      ${() => tw`mb-5 text-lg lg:mb-0 lg:ml-4 lg:font-semibold lg:text-s`}
-
-      &:first-child {
-        ${() => tw`lg:ml-0`}
-      }
-    }
-  }
-`;

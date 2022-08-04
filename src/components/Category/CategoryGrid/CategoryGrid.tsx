@@ -2,8 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { productsWithoutContainerType } from 'src/components/Products/HorizontalGrid/ProductsWithoutContainer';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 
 interface Props {
   items: productsWithoutContainerType[];

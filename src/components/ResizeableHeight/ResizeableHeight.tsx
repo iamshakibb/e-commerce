@@ -1,7 +1,6 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useMeasure from 'react-use-measure';
-import { relative } from 'path';
 
 const ResizeableHeight = ({
   children,

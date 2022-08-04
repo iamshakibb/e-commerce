@@ -1,45 +1,43 @@
 import Link from 'next/link';
 import React from 'react';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 import { AiFillFacebook, AiFillLinkedin } from 'react-icons/ai';
 import { randomId } from 'src/constant/product-categorie';
 
 function Footer() {
   return (
-    <Wrapper>
-      <Grid>
+    <footer className="container py-12 mt-24">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
         <div className="grid-item">
-          <h2>CUSTOMER SERVICE</h2>
+          <h2 className="mb-4 text-sm font-semibold">CUSTOMER SERVICE</h2>
           <ul>
             {customer_service.map((cs) => (
-              <li key={cs.id}>
+              <li key={cs.id} className="mb-2">
                 <Link href={cs.link}>
-                  <a>{cs.name}</a>
+                  <a className="flex items-center gap-4 text-s">{cs.name}</a>
                 </Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="grid-item">
-          <h2>INFO</h2>
+          <h2 className="mb-4 text-sm font-semibold">INFO</h2>
           <ul>
             {info.map((cs) => (
-              <li key={cs.id}>
+              <li key={cs.id} className="mb-2">
                 <Link href={cs.link}>
-                  <a>{cs.name}</a>
+                  <a className="flex items-center gap-4 text-s">{cs.name}</a>
                 </Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="grid-item">
-          <h2>FOLLOW US</h2>
+          <h2 className="mb-4 text-sm font-semibold">FOLLOW US</h2>
           <ul>
             {social.map((s) => (
-              <li key={s.id}>
+              <li key={s.id} className="mb-2">
                 <Link href={s.link}>
-                  <a>
+                  <a className="flex items-center gap-4 text-s">
                     <span>{s.icon}</span>
                     <span>{s.name}</span>
                   </a>
@@ -48,8 +46,8 @@ function Footer() {
             ))}
           </ul>
         </div>
-      </Grid>
-    </Wrapper>
+      </div>
+    </footer>
   );
 }
 
@@ -130,27 +128,3 @@ const customer_service = [
     id: randomId(),
   },
 ];
-
-const Wrapper = styled.footer`
-  ${() => tw`container py-12 mt-24`}
-`;
-
-const Grid = styled.div`
-  ${() => tw`grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3`}
-
-  & > .grid-item {
-    & > h2 {
-      ${() => tw`mb-4 text-sm font-semibold`}
-    }
-
-    & > ul {
-      & > li {
-        ${() => tw`mb-2`}
-
-        & > a {
-          ${() => tw`flex items-center gap-4 text-s`}
-        }
-      }
-    }
-  }
-`;

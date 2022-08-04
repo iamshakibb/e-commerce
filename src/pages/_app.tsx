@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
 import Layout from 'src/components/Layout';
-import GlobalStyles from 'src/components/styles/GlobalStyles';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,7 +10,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <GlobalStyles />
       <Layout>
         <Component {...pageProps} />
       </Layout>
