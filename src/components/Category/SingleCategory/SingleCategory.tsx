@@ -1,11 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
+import { useMediaQuery } from 'src/hooks/useMediaQuery';
 import { useWindowSize } from 'src/hooks/useWindowSize';
-import { Button } from 'src/styles/Buttons';
-import { Heading } from 'src/styles/Heading';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 
 interface SingleCategoryType {
   details: string;
@@ -27,80 +24,103 @@ function SingleCategory({
   title,
   position,
 }: SingleCategoryType) {
-  const wrapper = useRef<HTMLDivElement | null>(null);
   const [contentHeight, setContentHeight] = useState(0);
-  const isWindowsSizeChange = useWindowSize();
-  useEffect(() => {
-    if (wrapper.current) {
-      setContentHeight(wrapper.current?.offsetHeight);
-    }
-  }, [isWindowsSizeChange]);
+
   return (
-    <Wrapper contentHeight={contentHeight} position={position}>
-      <div>
-        <div className="w-full p-0 h-fit" ref={wrapper}>
-          <Heading>{title}</Heading>
-          <p>{details}</p>
-          <Link href={`/${btn.link}`} passHref>
-            <Button twoColor>{btn.name}</Button>
-          </Link>
-        </div>
-      </div>
-      <div>
-        <Image
-          src={image}
-          alt="Featured"
-          layout="fill"
-          objectFit="cover"
-          placeholder="blur"
-          blurDataURL={blurImage}
-        />
-        <Overlay aria-hidden />
-      </div>
-    </Wrapper>
+    <section className="relative h-screen pb-8">
+      {/* Content section */}
+      <Content
+        details={details}
+        btn={btn}
+        title={title}
+        position={position}
+        setContentHeight={setContentHeight}
+      />
+      {/* Image section */}
+      <ImageSection
+        image={image}
+        blurImage={blurImage}
+        contentHeight={contentHeight}
+      />
+    </section>
   );
 }
 
 export default SingleCategory;
 
-const Wrapper = styled.section<{ contentHeight: number; position: string }>`
-  ${() => tw`relative h-screen pb-8`}
+interface contentProps extends Omit<SingleCategoryType, 'image' | 'blurImage'> {
+  setContentHeight: React.Dispatch<React.SetStateAction<number>>;
+}
 
-  & > div:first-child {
-    ${() =>
-      tw`container relative z-10 flex flex-col items-center justify-end h-full text-center lg:text-left lg:text-white lg:items-start`}
-    ${({ position }) =>
-      position === 'end'
-        ? tw`lg:justify-end`
-        : position === 'center'
-        ? tw`lg:justify-center`
-        : position === 'right'
-        ? tw`lg:justify-start lg:pt-48 lg:items-end`
-        : ''};
+const Content = ({
+  position,
+  setContentHeight,
+  details,
+  title,
+  btn,
+}: contentProps) => {
+  const wrapper = useRef<HTMLDivElement | null>(null);
+  const isWindowsSizeChange = useWindowSize();
 
-    div {
-      ${() => tw`max-w-[500px] w-full`}
-      ${({ position }) => (position === 'end' ? tw`lg:mb-20` : ``)}
+  useEffect(() => {
+    if (wrapper.current) {
+      setContentHeight(wrapper.current?.offsetHeight);
     }
-  }
+  }, [isWindowsSizeChange, setContentHeight]);
+  return (
+    <div
+      className={`container relative z-10 flex flex-col items-center justify-end h-full text-center lg:text-left lg:text-white lg:items-start ${
+        position === 'end'
+          ? 'lg:justify-end'
+          : position === 'center'
+          ? 'lg:justify-center'
+          : position === 'right'
+          ? 'lg:justify-start lg:pt-48 lg:items-end'
+          : ''
+      }`}
+    >
+      <div
+        className={`w-full max-w-[500px] p-0 h-fit ${
+          position === 'end' ? 'lg:mb-20' : ``
+        }`}
+        ref={wrapper}
+      >
+        <h1 className="heading">{title}</h1>
+        <p>{details}</p>
+        <Link href={`/${btn.link}`} passHref>
+          <button className="button">{btn.name}</button>
+        </Link>
+      </div>
+    </div>
+  );
+};
 
-  & > div:last-child {
-    height: ${({ contentHeight }) =>
-      contentHeight ? `calc(100vh - ${contentHeight}px - 10px) ` : `100vh`};
-    ${() => tw`absolute top-0 w-full`};
+interface imageProps
+  extends Omit<SingleCategoryType, 'title' | 'details' | 'btn' | 'position'> {
+  contentHeight: number;
+}
 
-    @media (min-width: 728px) {
-      height: ${({ contentHeight }) =>
-        contentHeight ? `calc(100vh - ${contentHeight}px - 0px) ` : `100vh`};
-      ${() => tw`absolute top-0 w-full`};
-    }
+const ImageSection = ({ image, blurImage, contentHeight }: imageProps) => {
+  const isMediumDevice = useMediaQuery(`(min-width: 728px)`);
 
-    @media (min-width: 992px) {
-      height: 100vh;
-    }
-  }
-`;
-
-const Overlay = styled.div`
-  ${() => tw`relative w-full h-full bg-black opacity-20`}
-`;
+  return (
+    <div
+      className={`absolute top-0 w-full lg:!h-screen lol`}
+      style={{
+        height: `calc((100vh - ${contentHeight}px) - ${
+          isMediumDevice ? '5px' : '15px'
+        })`,
+      }}
+    >
+      <Image
+        src={image}
+        alt="Featured"
+        layout="fill"
+        objectFit="cover"
+        placeholder="blur"
+        blurDataURL={blurImage}
+      />
+      <div aria-hidden className="overlay" />
+    </div>
+  );
+};

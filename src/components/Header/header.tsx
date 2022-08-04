@@ -139,17 +139,17 @@ const leftNavOptions = [
   {
     id: 'left-nav-0',
     name: 'New Arrivals',
-    link: 'new_arrivals',
+    link: '/',
   },
-  {
-    id: 'left-nav-1',
-    name: 'Shop',
-    link: 'shop',
-  },
+  // {
+  //   id: 'left-nav-1',
+  //   name: 'Shop',
+  //   link: 'shop',
+  // },
   {
     id: 'left-nav-2',
     name: 'Collections',
-    link: 'collections',
+    link: '/collections',
   },
 ];
 

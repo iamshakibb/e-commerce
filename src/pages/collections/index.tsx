@@ -2,20 +2,15 @@ import React from 'react';
 import SideBar from 'src/components/SideBar';
 import { randomId } from 'src/constant/product-categorie';
 import Collections from 'src/components/Collections';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 
 const CollectionsPage = () => {
-  // const Heading = () => <h2>Hello asdfasdf</h2>;
   return (
-    <Layout>
-      <>
-        <div>
-          <SideBar />
-        </div>
-        <Collections products={products} />
-      </>
-    </Layout>
+    <section className="grid container grid-cols-1 mt-[100px] lg:grid-cols-[250px_1fr]">
+      <div>
+        <SideBar />
+      </div>
+      <Collections products={products} />
+    </section>
   );
 };
 
@@ -65,7 +60,3 @@ const products = [
     isSoldOut: true,
   },
 ];
-
-const Layout = styled.section`
-  ${() => tw`grid container grid-cols-1 mt-[100px] lg:grid-cols-[200px 1fr] `}
-`;

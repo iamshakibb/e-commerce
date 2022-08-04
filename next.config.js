@@ -3,6 +3,8 @@ const path = require("path");
 const nextConfig = {
   images: {
     domains: ['res.cloudinary.com'],
+      // loader: 'cloudinary',
+      // path: '<cloudinary-path-here>'
   },
   reactStrictMode: true,
   // Modify webpack for modal

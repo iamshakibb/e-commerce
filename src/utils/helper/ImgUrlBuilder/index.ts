@@ -1,4 +1,4 @@
-import { buildUrl, } from 'cloudinary-build-url';
+import { buildUrl } from 'cloudinary-build-url';
 
 export const url = (imageId: string, blur?: boolean, fileName: string = 'e-commerce') =>
   buildUrl(`${fileName}/${imageId}`, {

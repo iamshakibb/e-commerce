@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { categorie, filters } from 'src/constant/product-categorie';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -12,12 +11,10 @@ import ResizeableHeight from '../ResizeableHeight';
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const isMediumDevice = useMediaQuery(`(min-width: 1024px)`);
 
-  // console.log(isOpen);
   return (
     <MotionConfig transition={{ duration: 0.4 }}>
-      <Wrapper>
+      <div className="mb-10 border-b-2 border-dashed border-b-gray-500 lg:border-none">
         <ToggleBtn>
           <button onClick={() => setIsOpen((prev) => !prev)}>
             <span>{isOpen ? <FiMinus /> : <BsPlus />}</span>
@@ -26,7 +23,7 @@ const SideBar = () => {
         </ToggleBtn>
         <SideNav />
         <MobileSideNav isOpen={isOpen} />
-      </Wrapper>
+      </div>
     </MotionConfig>
   );
 };
@@ -37,8 +34,8 @@ export default SideBar;
 const SideNav = () => {
   return (
     <div className="hidden lg:block">
-      <Categorie>
-        <h1>CATEGORIES</h1>
+      <div className="mb-5">
+        <h1 className="mb-3 text-sm font-semibold">CATEGORIES</h1>
         <ul>
           {categorie.map((c) => (
             <li key={c.id}>
@@ -46,7 +43,7 @@ const SideNav = () => {
             </li>
           ))}
         </ul>
-      </Categorie>
+      </div>
       <FilterWrapper>
         <h2>Filter</h2>
         <ul>
@@ -65,8 +62,8 @@ const MobileSideNav = ({ isOpen }: { isOpen: boolean }) => {
       <ResizeableHeight isOpen={isOpen}>
         {isOpen && (
           <div>
-            <Categorie>
-              <h1>CATEGORIES</h1>
+            <div className="mb-5">
+              <h1 className="mb-3 text-sm font-semibold">CATEGORIES</h1>
               <ul>
                 {categorie.map((c) => (
                   <li key={c.id}>
@@ -74,7 +71,7 @@ const MobileSideNav = ({ isOpen }: { isOpen: boolean }) => {
                   </li>
                 ))}
               </ul>
-            </Categorie>
+            </div>
             <FilterWrapper>
               <h2>Filter</h2>
               <ul>
@@ -90,9 +87,9 @@ const MobileSideNav = ({ isOpen }: { isOpen: boolean }) => {
   );
 };
 
-const Wrapper = styled.div`
-  ${() => tw`mb-10 border-b-2 border-dashed border-b-gray-500 lg:border-none`}
-`;
+// const Wrapper = styled.div`
+//   ${() => tw`mb-10 border-b-2 border-dashed border-b-gray-500 lg:border-none`}
+// `;
 
 const Categorie = styled.div`
   ${() => tw`mb-5`}

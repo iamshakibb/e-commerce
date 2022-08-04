@@ -1,4 +1,3 @@
-import buildUrl from 'cloudinary-build-url';
 import type { NextPage } from 'next';
 import SingleCategory from 'src/components/Category';
 import CategoryGrid from 'src/components/Category/CategoryGrid';
@@ -8,10 +7,9 @@ import {
 } from 'src/components/Products';
 
 import { url } from 'src/utils/helper/ImgUrlBuilder';
-import styled from 'styled-components';
-import tw from 'twin.macro';
 
 const Home: NextPage = () => {
+  console.log(url('home1_am5ox9'));
   return (
     <>
       {/* single category product */}
@@ -152,29 +150,3 @@ const product = [
     image: url('product3_ejcvpu'),
   },
 ];
-
-const Grid = styled.div`
-  ${() => tw`grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-2 lg:gap-2`}
-
-  & > .grid-item {
-    ${() => tw`w-full h-full`}
-    & > div:first-child {
-      ${() => tw`relative h-[65em] md:h-[75em] lg:h-[18em]`}
-    }
-  }
-
-  & > .grid-item:nth-child(1) {
-    ${() => tw`lg:row-[1/3] lg:col-[1/3]`}
-    & > div:first-child {
-      ${() => tw`lg:h-full`}
-    }
-  }
-
-  & > .grid-item:nth-child(2) {
-    ${() => tw`lg:col-[3/4] lg:row-[1/2]`}
-  }
-
-  & > .grid-item:nth-child(3) {
-    ${() => tw`lg:col-[4/-1] lg:row-[1/2]`}
-  }
-`;

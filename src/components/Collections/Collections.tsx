@@ -36,7 +36,7 @@ const Collections: React.FC<props> = ({ products }) => {
               <BiHeart />
             </button>
           </div>
-          <Link href={`product/${product.title}`} passHref>
+          <Link href={`collections/${product.title}`} passHref>
             <a className="space-y-1">
               <Heading>{product.title}</Heading>
               <p className="text-sm">
