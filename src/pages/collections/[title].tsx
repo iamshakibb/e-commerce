@@ -10,8 +10,8 @@ const Product = () => {
 
   return (
     <section className="grid gap-10 mt-16 md:mt-24 md:container gird-cols-1 md:grid-cols-2 xl:grid-cols-[500px_1fr] xl:gap-36">
-      <div className="image-container !relative h-[100vh] md:h-[80vh] lg:h-[100vh]">
-        <Image src={image} alt="procucts" layout="fill" />
+      <div className="image-container !relative h-[80vh] md:h-[60vh] ">
+        <Image src={image} alt="procucts" layout="fill" objectFit="cover" />
       </div>
       <ProductInfo setImage={setImage} />
     </section>
