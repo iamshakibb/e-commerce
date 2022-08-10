@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BiShoppingBag, BiHeart } from 'react-icons/bi';
 import { HiOutlineMenuAlt2, HiOutlinePlusSm } from 'react-icons/hi';
 import { FiUser } from 'react-icons/fi';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
 import { useRouter } from 'next/router';
+import { GlobalContext, globalContextType } from 'src/context/global';
 
 export default function Header() {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function Header() {
     },
     visible: { opacity: 1, top: 0 },
   };
+  const { showCart } = useContext(GlobalContext) as globalContextType;
 
   useEffect(() => {
     if (!isMediumDevice) {
@@ -27,99 +29,109 @@ export default function Header() {
     }
   }, [isMediumDevice, router]);
   return (
-    <motion.header
-      className="fixed z-40 w-full lg:pt-2 lg:text-white"
-      initial={{ opacity: 0, top: '-100vh' }}
-      animate={{ opacity: 1, top: 0 }}
-    >
-      <div className="container font-Raleway uppercase grid grid-cols-[50px_auto_90px] md:grid-cols-[2fr_1fr_2fr] items-center">
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center w-full h-screen bg-white lg:bg-transparent lg:relative lg:w-auto lg:h-auto lg:justify-start"
-          initial={isMediumDevice ? `visible` : 'hidden'}
-          animate={isMediumDevice ? `visible` : menuOpen ? 'visible' : 'hidden'}
-          variants={navVariants}
-        >
-          <ul className="lg:flex">
-            {leftNavOptions.map((option, idx) => (
-              <li
-                key={`nav-list-${option.id}`}
-                className={`mb-5 text-lg lg:mb-0 lg:font-semibold lg:text-s ${
-                  isRootPath && isMediumDevice ? 'text-white' : 'text-black'
-                } ${idx === 0 ? `lg:ml-0` : 'lg:ml-4'}`}
+    <AnimatePresence initial={false}>
+      <motion.header
+        className="fixed z-40 w-full lg:pt-2 lg:text-white"
+        initial={{ opacity: 0, top: '-100vh' }}
+        animate={{ opacity: 1, top: 0 }}
+      >
+        <div className="container font-Raleway uppercase grid grid-cols-[50px_auto_90px] md:grid-cols-[2fr_1fr_2fr] items-center">
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center w-full h-screen bg-white lg:bg-transparent lg:relative lg:w-auto lg:h-auto lg:justify-start"
+            initial={isMediumDevice ? `visible` : 'hidden'}
+            animate={
+              isMediumDevice ? `visible` : menuOpen ? 'visible' : 'hidden'
+            }
+            variants={navVariants}
+          >
+            <ul className="lg:flex">
+              {leftNavOptions.map((option, idx) => (
+                <li
+                  key={`nav-list-${option.id}`}
+                  className={`mb-5 text-lg lg:mb-0 lg:font-semibold lg:text-s ${
+                    isRootPath && isMediumDevice ? 'text-white' : 'text-black'
+                  } ${idx === 0 ? `lg:ml-0` : 'lg:ml-4'}`}
+                >
+                  <Link href={option.link}>
+                    <a>{option.name}</a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+          <div className="z-50 lg:hidden">
+            {menuOpen ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-base msm:text-base"
               >
-                <Link href={option.link}>
-                  <a>{option.name}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-        <div className="z-50 lg:hidden">
-          {menuOpen ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-base msm:text-base"
-            >
-              <HiOutlinePlusSm
-                className="rotate-[rotate(45deg)]"
-                onClick={() => setMenuOpen(!menuOpen)}
-              />
-            </motion.div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-base msm:text-base"
-            >
-              <HiOutlineMenuAlt2 onClick={() => setMenuOpen(!menuOpen)} />
-            </motion.div>
-          )}
-        </div>
+                <HiOutlinePlusSm
+                  className="rotate-[rotate(45deg)]"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                />
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-base msm:text-base"
+              >
+                <HiOutlineMenuAlt2 onClick={() => setMenuOpen(!menuOpen)} />
+              </motion.div>
+            )}
+          </div>
 
-        <div className="justify-self-center w-28 mt-1.5">
-          <Link href={'/'}>
-            <a>
-              <div className="w-full h-full lg:hidden">
-                <Image
-                  src="/assets/svg/logo/Logo_black.svg"
-                  alt="ECOMMERCE"
-                  width={'150px'}
-                  height={'40px'}
-                  quality={100}
-                  placeholder="blur"
-                  blurDataURL={rgbDataURL(255, 255, 255)}
-                />
-              </div>
-              <div className="hidden w-full h-full lg:block">
-                <Image
-                  src={
-                    isRootPath
-                      ? '/assets/svg/logo/Logo_white.svg'
-                      : '/assets/svg/logo/Logo_black.svg'
-                  }
-                  alt="ECOMMERCE"
-                  width={'150px'}
-                  height={'40px'}
-                  quality={100}
-                  placeholder="blur"
-                  blurDataURL={rgbDataURL(255, 255, 255)}
-                />
-              </div>
-            </a>
-          </Link>
+          <div className="justify-self-center w-28 mt-1.5">
+            <Link href={'/'}>
+              <a>
+                <div className="w-full h-full lg:hidden">
+                  <Image
+                    src="/assets/svg/logo/Logo_black.svg"
+                    alt="ECOMMERCE"
+                    width={'150px'}
+                    height={'40px'}
+                    quality={100}
+                    placeholder="blur"
+                    blurDataURL={rgbDataURL(255, 255, 255)}
+                  />
+                </div>
+                <div className="hidden w-full h-full lg:block">
+                  <Image
+                    src={
+                      isRootPath
+                        ? '/assets/svg/logo/Logo_white.svg'
+                        : '/assets/svg/logo/Logo_black.svg'
+                    }
+                    alt="ECOMMERCE"
+                    width={'150px'}
+                    height={'40px'}
+                    quality={100}
+                    placeholder="blur"
+                    blurDataURL={rgbDataURL(255, 255, 255)}
+                  />
+                </div>
+              </a>
+            </Link>
+          </div>
+          <div
+            className={`z-50 flex justify-self-end text-base msm:text-base  space-x-2 ${
+              isRootPath ? `text-white` : `text-black`
+            }`}
+          >
+            {/* shpping cart */}
+            <button onClick={showCart}>
+              <BiShoppingBag />
+            </button>
+
+            {/* whishlist */}
+            <BiHeart />
+            {/* user */}
+            <FiUser />
+          </div>
         </div>
-        <div
-          className={`z-50 flex justify-self-end text-base msm:text-base  space-x-2 ${
-            isRootPath ? `text-white` : `text-black`
-          }`}
-        >
-          <BiShoppingBag />
-          <BiHeart />
-          <FiUser />
-        </div>
-      </div>
-    </motion.header>
+      </motion.header>
+    </AnimatePresence>
   );
 }
 

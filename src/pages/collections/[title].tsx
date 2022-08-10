@@ -4,17 +4,26 @@ import { randomId } from 'src/constant/product-categorie';
 import { url } from 'src/utils/helper/ImgUrlBuilder';
 import { BiHeart } from 'react-icons/bi';
 import { motion } from 'framer-motion';
+import { ProductsWithContainer } from 'src/components/Products';
 
 const Product = () => {
   const [image, setImage] = useState(url('product8_cj7sy7'));
 
   return (
-    <section className="grid gap-10 mt-16 md:mt-24 md:container gird-cols-1 md:grid-cols-2 xl:grid-cols-[500px_1fr] xl:gap-36">
-      <div className="image-container !relative h-[80vh] md:h-[60vh] ">
-        <Image src={image} alt="procucts" layout="fill" objectFit="cover" />
+    <>
+      <section className="grid gap-10 mt-16 md:mt-24 md:container gird-cols-1 md:grid-cols-2 xl:grid-cols-[500px_1fr] xl:gap-36">
+        <div className="image-container !relative h-[80vh] md:h-[60vh] ">
+          <Image src={image} alt="procucts" layout="fill" objectFit="cover" />
+        </div>
+        <ProductInfo setImage={setImage} />
+      </section>
+      <div>
+        <h1 className="container mt-10 font-semibold text-center">
+          YOU MAY ALSO LIKE
+        </h1>
+        <ProductsWithContainer items={product2} />
       </div>
-      <ProductInfo setImage={setImage} />
-    </section>
+    </>
   );
 };
 
@@ -116,6 +125,37 @@ const ProductSizes = ({ sizes }: { sizes: string[] }) => {
     </div>
   );
 };
+
+const product2 = [
+  {
+    id: 1,
+    name: 'Lorem ipsum dolor sit amet.',
+    price: 200,
+    link: '',
+    image: url('product4_hcihjo'),
+  },
+  {
+    id: 2,
+    name: 'Lorem ipsum dolor sit amet.',
+    price: 200,
+    link: '',
+    image: url('product5_tgrxeh'),
+  },
+  {
+    id: 3,
+    name: 'Lorem ipsum dolor sit amet.',
+    price: 200,
+    link: '',
+    image: url('product6_pp3cfo'),
+  },
+  {
+    id: 4,
+    name: 'Lorem ipsum dolor sit amet.',
+    price: 200,
+    link: '',
+    image: url('product7_jplueo'),
+  },
+];
 
 const info = {
   title: 'CHALK SAINTS BOYFRIEND',
