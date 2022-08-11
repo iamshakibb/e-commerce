@@ -39,7 +39,12 @@ const VerticalModal = ({
           <motion.div
             initial="hidden"
             animate={isCartOpen ? 'visible' : 'hidden'}
-            exit="hidden"
+            exit={{
+              ...backDropVariant.hidden,
+              transition: {
+                delay: 0.3,
+              },
+            }}
             variants={backDropVariant}
             transition={{ duration: 0.4 }}
             className="fixed w-full h-full bg-[rgba(36,36,36,0.68)]"
@@ -52,7 +57,7 @@ const VerticalModal = ({
               transition={{ duration: 0.5, delay: 0.1 }}
               exit="hidden"
               variants={modalVariant}
-              className="fixed right-0 w-[35vw] lg:w-[25vw] h-screen bg-white px-5 py-4"
+              className="fixed right-0 w-[70vw] msm:w-[55vw] sm:w-[50vw] md:w-[40vw] lg:w-[30vw] h-screen bg-white px-5 py-4"
               style={isCartOpen ? { zIndex: 50 } : { zIndex: -1 }}
               ref={modalContentRef}
             >
