@@ -1,22 +1,14 @@
 import type { NextPage } from 'next';
-import { useContext } from 'react';
 import SingleCategory from 'src/components/Category';
 import CategoryGrid from 'src/components/Category/CategoryGrid';
-import { VerticalModal } from 'src/components/Modal';
 import {
   ProductsWithContainer,
   ProductsWithoutContainer,
 } from 'src/components/Products';
-import SideBar from 'src/components/SideBar';
-import { GlobalContext, globalContextType } from 'src/context/global';
 
 import { url } from 'src/utils/helper/ImgUrlBuilder';
 
 const Home: NextPage = () => {
-  const { hideCart, isCartOpen, showCart } = useContext(
-    GlobalContext
-  ) as globalContextType;
-
   return (
     <>
       {/* single category product */}
@@ -58,11 +50,6 @@ const Home: NextPage = () => {
         position="right"
       />
       <CategoryGrid items={product3} />
-
-      {/* Modal section all the modal goes here */}
-      <VerticalModal hide={hideCart} isCartOpen={isCartOpen}>
-        <h1>Hello world</h1>
-      </VerticalModal>
     </>
   );
 };

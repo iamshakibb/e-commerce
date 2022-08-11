@@ -6,11 +6,16 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     setMounted(true);
+    // adding class when modal is active
     const mainBody = document.querySelector('body')!;
-    mainBody.classList.add('overflow-hidden');
+    const modalDiv = document.querySelector('#modal');
+    mainBody?.classList.add('overflow-hidden');
+    modalDiv?.classList.add('active-modal');
     return () => {
+      // removing class when modal is active
       setMounted(false);
       mainBody.classList.remove('overflow-hidden');
+      modalDiv?.classList.remove('active-modal');
     };
   }, []);
 

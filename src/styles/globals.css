@@ -30,7 +30,7 @@
     @apply !w-full !h-full;
   }
 
-  #modal {
+  .active-modal {
     @apply absolute w-full h-screen top-0;
   }
 }
