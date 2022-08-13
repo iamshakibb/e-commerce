@@ -22,10 +22,12 @@ const VerticalModal = ({
   hide,
   isCartOpen,
   children,
+  title,
 }: {
   hide: () => void;
   isCartOpen: boolean;
   children: React.ReactNode;
+  title?: string;
 }) => {
   let modalContentRef = React.useRef<HTMLDivElement>(null);
   // hook might need to modify
@@ -57,14 +59,16 @@ const VerticalModal = ({
               transition={{ duration: 0.5, delay: 0.1 }}
               exit="hidden"
               variants={modalVariant}
-              className="fixed right-0 w-[70vw] msm:w-[55vw] sm:w-[50vw] md:w-[40vw] lg:w-[30vw] h-screen bg-white px-5 py-4"
+              className="fixed right-0 w-[70vw] msm:w-[250px] sm:w-[40vw] md:w-[35vw] lg:w-[30vw] h-screen bg-white py-4 overflow-y-auto"
               style={isCartOpen ? { zIndex: 50 } : { zIndex: -1 }}
               ref={modalContentRef}
             >
               {/* Head section */}
-              <div className="flex items-center justify-between">
-                <h4>Your cart</h4>
-                <button onClick={hide}>
+              <div className="flex items-center justify-between px-3">
+                {title && (
+                  <h4 className="text-sm font-semibold capitalize ">{title}</h4>
+                )}
+                <button className="text-base" onClick={hide}>
                   <FaTimes />
                 </button>
               </div>

@@ -8,12 +8,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
 import { useRouter } from 'next/router';
 import { GlobalContext, globalContextType } from 'src/context/global';
-import { VerticalModal } from '../Modal';
+import { CartModal } from '../Cart';
 
 export default function Header() {
-  const { hideCart, isCartOpen, showCart } = useContext(
-    GlobalContext
-  ) as globalContextType;
+  const { showCart } = useContext(GlobalContext) as globalContextType;
   const router = useRouter();
   const isRootPath = router.pathname === '/';
   const isMediumDevice = useMediaQuery(`(min-width: 1024px)`);
@@ -138,9 +136,7 @@ export default function Header() {
         </motion.header>
       </AnimatePresence>
       {/* Modal section all the modal goes here */}
-      <VerticalModal hide={hideCart} isCartOpen={isCartOpen}>
-        <h1>Hello world</h1>
-      </VerticalModal>
+      <CartModal />
     </>
   );
 }
