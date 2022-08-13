@@ -59,7 +59,7 @@ const VerticalModal = ({
               transition={{ duration: 0.5, delay: 0.1 }}
               exit="hidden"
               variants={modalVariant}
-              className="fixed right-0 w-[70vw] msm:w-[250px] sm:w-[40vw] md:w-[35vw] lg:w-[30vw] h-screen bg-white py-4 overflow-y-auto"
+              className="fixed right-0 w-[85vw] msm:w-[250px] sm:w-[40vw] md:w-[35vw] lg:w-[30vw] h-screen bg-white py-4 overflow-y-auto"
               style={isCartOpen ? { zIndex: 50 } : { zIndex: -1 }}
               ref={modalContentRef}
             >

@@ -4,6 +4,9 @@ import { VerticalModal } from 'src/components/Modal';
 import { randomId } from 'src/constant/product-categorie';
 import { GlobalContext, globalContextType } from 'src/context/global';
 import { url } from 'src/utils/helper/ImgUrlBuilder';
+import { IoIosResize } from 'react-icons/io';
+import Link from 'next/link';
+import { HiPlusSm, HiMinusSm } from 'react-icons/hi';
 
 const CartModal = () => {
   const { hideCart, isCartOpen } = useContext(
@@ -12,8 +15,13 @@ const CartModal = () => {
   return (
     <>
       <VerticalModal title="Your Cart" hide={hideCart} isCartOpen={isCartOpen}>
-        <div className="px-3 mt-5">
+        <div className="flex items-center justify-between px-3 mt-5">
           <h4 className="text-sm">Total: USD $595</h4>
+          <Link href="/cart" aria-label="go to cart page">
+            <a className="text-lg" title="Cart page">
+              <IoIosResize />
+            </a>
+          </Link>
         </div>
         <div className="mt-5 space-y-8">
           {products.map((product) => (
@@ -27,7 +35,18 @@ const CartModal = () => {
               </div>
               <div className="px-3">
                 <h1>{product.title}</h1>
-                <p>${product.price}</p>
+                <div className="flex items-center">
+                  <p className="mr-10">${product.price}</p>
+                  <div className="flex items-center space-x-5">
+                    <button>
+                      <HiPlusSm />
+                    </button>
+                    <button>
+                      <HiMinusSm />
+                    </button>
+                  </div>
+                </div>
+
                 <p>Quantity: {product.price}</p>
                 <p>Size: {product.price}</p>
               </div>
