@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useMediaQuery } from 'src/hooks/useMediaQuery';
 import { useRouter } from 'next/router';
 import { GlobalContext, globalContextType } from 'src/context/global';
-import { CartModal } from '../Cart';
+import { CartModal } from '../Modal';
 
 export default function Header() {
   const { showCart } = useContext(GlobalContext) as globalContextType;

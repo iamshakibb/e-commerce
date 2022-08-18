@@ -26,7 +26,7 @@ const CartModal = () => {
         <div className="mt-5 space-y-8">
           {products.map((product) => (
             <div className="relative space-y-3" key={product.id}>
-              <div className="relative w-full h-[350px] md:h-[400px] lg:h-[450px]">
+              <div className="relative w-full h-[350px] md:h-[400px] lg:h-[450px] xl:h-[550px] 2xl:h-[650px]">
                 <Image
                   alt={product.title}
                   layout="fill"

@@ -12,12 +12,12 @@ const Product = () => {
   return (
     <>
       <section className="grid gap-10 mt-16 md:mt-24 md:container gird-cols-1 md:grid-cols-2 xl:grid-cols-[500px_1fr] xl:gap-36">
-        <div className="image-container !relative h-[80vh] md:h-[500px] ">
+        <div className="image-container !relative h-[80vh] md:h-[500px] lg:h-[550px]">
           <Image src={image} alt="procucts" layout="fill" objectFit="cover" />
         </div>
         <ProductInfo setImage={setImage} />
       </section>
-      <div>
+      <div className="mt-20">
         <h1 className="container mt-10 font-semibold text-center">
           YOU MAY ALSO LIKE
         </h1>
