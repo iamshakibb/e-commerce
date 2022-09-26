@@ -2,6 +2,8 @@ import Image from 'next/image';
 import React from 'react';
 import { randomId } from 'src/constant/product-categorie';
 import { url } from 'src/utils/helper/ImgUrlBuilder';
+import * as Select from '@radix-ui/react-select';
+import { HiChevronDown } from 'react-icons/hi';
 
 const cart = () => {
   return (
@@ -12,7 +14,7 @@ const cart = () => {
       </div>
       <div className="mt-5">
         {products.map((product) => (
-          <div key={product.id} className="mb-5">
+          <div key={product.id} className="grid grid-cols-2 mb-5">
             {/* image */}
             <div className="w-full max-w-[300px] h-[350px] relative">
               <Image layout="fill" src={url(product.img)} alt={product.title} />
@@ -20,6 +22,7 @@ const cart = () => {
             <div>
               <h1>{product.title}</h1>
               <p>USD ${product.price}</p>
+              <SelectCom />
             </div>
           </div>
         ))}
@@ -29,6 +32,46 @@ const cart = () => {
 };
 
 export default cart;
+
+const SelectCom = () => {
+  return (
+    <Select.Root defaultValue="apple">
+      <Select.SelectTrigger
+        aria-label="Color"
+        className="relative inline-flex items-center justify-center h-8 px-4 space-x-2 font-bold bg-white"
+      >
+        <Select.SelectValue placeholder="Select a Color" />
+        <span>
+          <HiChevronDown />
+        </span>
+      </Select.SelectTrigger>
+      <Select.SelectContent className="overflow-hidden bg-white rounded-md shadow-sm">
+        <Select.SelectViewport className="p-3">
+          <Select.SelectGroup>
+            <Select.SelectItem
+              value="apple"
+              className="relative flex items-center h-6 pl-6 pr-8 rounded bg-violet-600 [data-highlighted: FUCK] highlighted:bg-violet-600"
+            >
+              <Select.SelectItemText>Apple</Select.SelectItemText>
+            </Select.SelectItem>
+            <Select.SelectItem
+              value="banana"
+              className="relative flex items-center h-6 pl-6 pr-8 rounded bg-violet-600 "
+            >
+              <Select.SelectItemText>Banana</Select.SelectItemText>
+            </Select.SelectItem>
+            <Select.SelectItem
+              value="blueberry"
+              className="relative flex items-center h-6 pl-6 pr-8 rounded bg-violet-600"
+            >
+              <Select.SelectItemText>Blueberry</Select.SelectItemText>
+            </Select.SelectItem>
+          </Select.SelectGroup>
+        </Select.SelectViewport>
+      </Select.SelectContent>
+    </Select.Root>
+  );
+};
 
 const products = [
   {

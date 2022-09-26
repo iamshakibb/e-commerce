@@ -1,3 +1,5 @@
+const { default: plugin } = require('tailwindcss');
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
@@ -49,5 +51,7 @@ module.exports = {
       }
     },
   },
-  plugins: [require('tailwindcss-debug-screens')],
+  plugins: [
+    require('tailwindcss-debug-screens')
+  ],
 };

@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^1.0.0",
     "cloudinary-build-url": "^0.2.4",
     "framer-motion": "^6.2.8",
     "next": "^12.1.6",
