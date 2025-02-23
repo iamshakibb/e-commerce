@@ -11,7 +11,7 @@
     "@radix-ui/react-select": "^1.0.0",
     "cloudinary-build-url": "^0.2.4",
     "framer-motion": "^6.2.8",
-    "next": "^12.1.6",
+    "next": "^14.2.21",
     "react": "^18.0.0-rc.3",
     "react-dom": "^18.0.0-rc.3",
     "react-icons": "^4.3.1",
